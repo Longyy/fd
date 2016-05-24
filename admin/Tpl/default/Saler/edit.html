@@ -1,0 +1,91 @@
+<tagLib name="tpl"/>
+<include file="Public:header"/>
+<script type="text/javascript">
+	$(function () {
+		$("#add_attatch").click(function () {
+			$("#attatch_tr").clone().prependTo($("#attatch_tr").parent());
+		});
+	})
+</script>
+<form action="{:u('Saler/edit')}" method="post" name="myform" id="myform" enctype="multipart/form-data"
+      style="margin-top:10px;">
+	<div class="pad-10">
+		<div class="col-tab">
+			<ul class="tabBut cu-li">
+				<li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">{$Think.lang.general_info}
+				</li>
+			</ul>
+			<div id="div_setting_1" class="contentList pad-10">
+				<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+					<tr>
+						<th width="100">姓名:</th>
+						<td><input type="text" value="{$saler.name}" name="name" id="name" class="input-text" ></td>
+					</tr>
+					<tr>
+						<th>性别 :</th>
+						<td>
+							<select id="sex" name="sex">
+								<option value="1"<eq name="saler['sex']" value="1">selected="selected"</eq>>男</option>
+								<option value="0"<eq name="saler['sex']" value="0">selected="selected"</eq>>女</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>是否在职 :</th>
+						<td>
+							<select id="is_job" name="is_job">
+								<option value="1"<eq name="saler['is_job']" value="1">selected="selected"</eq>>在职</option>
+								<option value="0"<eq name="saler['is_job']" value="0">selected="selected"</eq>>离职</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th width="100">区域部门:</th>
+						<td>
+							<select name="department_id" id="department_id" style="width:200px;">
+								<volist name="departmentData" id="val">
+									<option value="{$val.id}" <eq name="val['id']" value="$saler['department_id']">selected="selected"</eq>>{$val.name}</option>
+								</volist>
+							</select>
+						</td>
+					</tr>
+					<!--<tr>-->
+						<!--<th width="100">职称:</th>-->
+						<!--<td><input type="text" value="{$saler.level_name}" name="level_name" id="level_name" class="input-text" ></td>-->
+					<!--</tr>-->
+					<!--<tr>-->
+						<!--<th>照片 :</th>-->
+						<!--<td><input type="file"  name="img" id="img" class="input-text" style="width:200px;"/>-->
+							<!--<input type="hidden" id="txtImg" name="txtImg" value="{$doctor.img}">-->
+						<!--</td>-->
+					<!--</tr>-->
+					<tr>
+						<th width="100">手机:</th>
+						<td><input type="text" value="{$saler.phone}" name="phone" id="phone" class="input-text" ></td>
+					</tr>
+					<tr>
+						<th width="100">邮箱:</th>
+						<td><input type="text" value="{$saler.email}" name="email" id="email" class="input-text" ></td>
+					</tr>
+
+				</table>
+			</div>
+
+			<div class="bk15"></div>
+			<input type="hidden" name="id" value="{$saler.id}" />
+			<div class="btn" style="display: none"><input type="submit" value="{$Think.lang.submit}" onclick="return submitFrom();"
+			                                              name="dosubmit" class="button" id="dosubmit"></div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'250',height:'50'}, function(){this.close();$(obj).focus();})}});
+
+		$("#name").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写名称"});
+		$("#level_name").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写职称"});
+		$("#phone").formValidator({ empty: false, onshow: "请输入你的手机号码，可以为空哦", onfocus: "你要是输入了，必须输入正确", oncorrect: "输入正确", onempty: "你真的不想留手机号码啊？" }).inputValidator({ min: 11, max: 11, onerror: "手机号码必须是11位的,请确认" }).regexValidator({ regexp: "mobile", datatype: "enum", onerror: "你输入的手机号码格式不正确" });
+		$("#email").formValidator({empty: false, onshow: "请输入邮箱", onfocus: "邮箱6-100个字符,输入正确了才能离开焦点", oncorrect: "恭喜你,你输对了", defaultvalue: ""}).inputValidator({ min: 6, max: 100, onerror: "你输入的邮箱长度非法,请确认" }).regexValidator({ regexp: "email", datatype: "enum", onerror: "你输入的邮箱格式不正确" });
+	})
+</script>
+</body></html>

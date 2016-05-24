@@ -1,0 +1,786 @@
+html { fomt-famiily: '宋体'; }
+body,
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+table,
+td,
+img,
+div,
+dl,
+dt,
+dd { margin: 0; padding: 0; border: 0; }
+body { background: #f7f7f7; color: #555; font-size: 18px; margin: 0 auto; max-width: 640px; font-family:微软雅黑; }
+a,
+a:link,
+a:active,
+a:hover,
+a:visited { color: #555; text-decoration: none; }
+a[type=button] { color: #fff !important; }
+@media only screen and (max-width:310px) and (min-width:300px) {
+body { font-size: 10px }
+}
+@media only screen and (max-width:320px) and (min-width:310px) {
+body { font-size: 10px }
+}
+@media only screen and (max-width:360px) and (min-width:320px) {
+body { font-size: 12px }
+}
+@media only screen and (max-width:360px) and (min-width:350px) {
+body { font-size: 12px }
+}
+@media only screen and (max-width:480px) and (min-width:360px) {
+body { font-size: 14px }
+}
+@media only screen and (max-width:480px) and (min-width:470px) {
+body { font-size: 14px }
+}
+@media only screen and (max-width:560px) and (min-width:480px) {
+body { font-size: 16px }
+}
+@media only screen and (max-width:570px) and (min-width:560px) {
+body { font-size: 16px }
+}
+@media only screen and (max-width:640px) and (min-width:570px) {
+body { font-size: 18px }
+}
+@media only screen and (max-width:640px) and (min-width:630px) {
+body { font-size: 18px }
+}
+ul,
+li,
+dl,
+dt,
+dd,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+form,
+img,
+div { margin: 0; padding: 0; list-style: none; border: 0 none; }
+
+.con { background:#ffffff; overflow: hidden; }
+.ect-colorf {color: #ffffff !important;}
+.ect-colorg {color: #a8a5a5 !important;}
+.ect-color{color:#4dc1e8;}
+.ect-colorb{color:#51c0eb;}
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left !important;
+}
+.clear{clear:both;overflow:hidden;}
+.text-right{text-align:right;}
+.ect-padding{padding:1.5em;}
+.ect-margin-top{margin-top:2em;}
+.btn{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;cursor:pointer;background-image:none;border:1px solid transparent;}
+input[type=button],input[type=reset],input[type=submit],input[type=text]{border-radius:0px;-webkit-appearance:button;cursor:pointer;padding-right:0px;padding-left:0px;}
+input::-moz-focus-inner{padding:0;border:0}input{line-height:normal}input[type=checkbox],input[type=radio]{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0}
+.ect-btn-info {
+    width: 100%;
+}
+.btn-info {
+    border: medium none;
+    font-size: 1.3em;
+    padding: 0.5em 0;
+}
+.btn-info {
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    color: #fff;
+}
+.ect-header {
+    height: 2.5em;
+    position: relative;
+	letter-spacing:0.5em;
+}
+.ect-margin-tb {
+    margin-bottom: 0.6em;
+    margin-top: 0.6em;
+}
+.ect-margin-lr {
+    margin-left: 0.6em;
+    margin-right: 0.6em;
+}
+.ect-padding-tb {
+    padding-bottom: 0.6em;
+    padding-top: 0.6em;
+}
+.ect-padding-lr {
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+}
+.ect-bg {
+    background: #50c1e9;
+    color: #fff;
+    height: auto;
+    overflow: hidden;
+	border-bottom:1px solid #3baeda;
+}
+.text-center {
+    text-align: center;
+}
+.icon-write .ect-icon-history {
+    background-image:url(images/icon_01.png);
+	background-repeat: no-repeat;
+	background-position:1%;
+	margin-left:1em;
+}
+.ect-header a {
+    height: 2.5em;
+    width: 2.5em;
+	
+}
+.ect-header span {
+    font-size: 1.4em;
+    left: 2.4em;
+    position: absolute;
+    right: 3em;
+	padding-top:0.2em;
+}
+.ect-icon1 {
+    background-size: 1.1em auto;
+}
+.pub-grey{border:1px solid #d0d0d0;background:#dcdcdc;padding:0.1em 1em;font-size:0.8em;}
+.pub-blue{border:1px solid #32a0c7;background:#4fc1e9;padding:0.1em 1em;font-size:0.8em;}
+.ect-bg-grey{background:#dcdcdc;}
+.ect-icon-mune{background:url(images/h_menu.png) no-repeat scroll 5px center / 5px auto;}
+
+
+/*求诊*/
+.treat-info .treat-name{font-size:16px;padding-bottom:0.5em;}
+.treat-info .treat-b{width:100%;height:400px;border:1px solid #cccccc;}
+.btn_grey,.btn_blue{border:none;padding:0.3em 0.4em;width:20%;font-size:1em;}
+.btn_grey{background:#dcdcdc;color:#a8a6a7;}
+.btn_blue{background:#50c1e9;color:#ffffff;}
+.treat-info .treat-btn{margin:1.5em;}
+
+/*登录*/
+.login-top{background:#1eabd8;height:160px;padding:1em;}
+.login-top p{color:#ffffff;font-size:21px;width:100%;padding-top:2em;}
+.usertxt,.passtxt{height:43px;width:84%;border:solid 1px #DDD;padding-left:9px;color:#333;font-size:16px;}
+.con .usertxt{background: #fff url(images/user.png) no-repeat 0px center / 49px auto;padding-left: 15%;}
+.passtxt{background: #fff url(images/password.png) no-repeat 0px center / 50px auto;padding-left:15%;}
+
+
+/*患者*/
+.patient-info{border-bottom:2px solid #eff1f1;}
+.patient-info ul li{clear: both;height: auto;overflow: hidden;padding: 0.4em 0.7em;}
+.pub-tab .nav {
+    background: #eeeeee;
+    height: 3em;
+    max-width: 640px;
+    width: 100%;
+}
+.pub-tab ul li {
+    padding: 0;
+	border-right:2px solid #e2e2e2;
+}
+.nav-tabs > li {
+    float: left;
+}
+.nav > li {
+    display: block;
+    position: relative;
+}
+.col-xs-4 {
+    width: 33%;
+}
+.pub-tab ul li:last-child {
+    border-right: medium none;
+}
+.pub-tab ul li.active{background:#50c1e9;}
+.pub-tab ul li.cur a{color:#50c1e9;}
+.pub-tab ul li.active a, .pub-tab ul li.active a:link {
+    color: #ffffff;
+	
+}
+.pub-tab ul li > a:link, .pub-tab li > a:hover {
+    border: medium none;
+    padding: 0.8em 0;
+}
+.nav-tabs > li > a {
+    line-height: 1.42857;
+    margin-right: 2px;
+}
+
+.nav > li > a {
+    display: block;
+    padding: 10px 15px;
+    position: relative;
+}
+
+
+/*专家介绍*/
+.input-search{background:#e5e3e4;}
+.input-search {
+    height: 3em;
+    overflow: hidden;
+    position: relative;
+}
+
+/*.input-search button {
+    background:#ffffff url(images/search.png) no-repeat center right;
+	background-size:28px;
+    border: medium none;
+    display: block;
+    height: 4em;
+    position: absolute;
+    width: 4em;
+}*/
+.input-search span {
+    left:1.5em;
+    position: absolute;
+    right: 1.5em;
+	
+}
+.input-search span input {
+    border: medium none;
+    box-sizing: border-box;
+    padding: 0em 0.6em 0em 3em;
+    width: 100%;
+	font-size:1.2em;
+	height:2.5em;
+	background: #ffffff url(images/search.png) no-repeat 5% center / 28px auto;
+}
+.zjjs-tab li{width:50%;float:left;height:3em;line-height:3em;font-size:1.2em;}
+.zjjs-tab li.cur{border-bottom:1px solid #4dc1e8;}
+.zjjs-tab li{border-bottom:1px solid #cccccc;}
+
+
+/**/
+.doctor-intro ul li dl dt h4.title {
+    height: auto;
+}
+dt, dd {
+    line-height: 1.42857;
+}
+li {
+    list-style-type: none;
+}
+.ect-pro-list ul li {
+    clear: both;
+    height: auto;
+    overflow: hidden;
+    padding: 0.9em;
+	position: relative;
+}
+.ect-pro-list ul li .user-img img{
+    background: #dddddd none repeat scroll 0 0;
+    border-radius: 40px;
+    color: #aaa;
+    font-size: 4em;
+    padding: 0.1em;
+	width:1em;
+	height:1em;
+	margin-left:0.3em;
+}
+.ect-pro-list ul li dl {
+    margin-left: 7.4em;
+	width:10em;
+}
+h4.title {
+    display: block;
+    font-size: 1.2em;
+    height: 2.4em;
+    line-height: 1.3em;
+    overflow: hidden;
+	font-weight: 500;
+}
+.doctor-intro ul li dl dd {
+    margin-top: 0.2em;
+}
+.ect-pro-list ul li dl dd {
+    font-size: 0.9em;
+    margin-top: 0.4em;
+    overflow: hidden;
+	color:#8f8b8a;
+}
+.doctor-intro li i.fa {
+    margin-top:-0.5em;
+    position: absolute;
+    right: 2em;
+    top: 50%;
+}
+.fa {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+}
+.fa-angle-right{background:url(images/icon_02.png) no-repeat;width:2em;height:2em;background-size:14px;}
+
+.doctor-detail .hospital-map{width:8em;height:8em;background:#e5e3e4;}
+
+.doctor-detail dl{margin-left:9em;}
+#doctor-list dl{width:auto;}
+.yy-color{color:#8e8a89;}
+
+.ect-wrapper div {
+    border-bottom: 1px solid #e6ecec;
+    border-top: 1px solid #e6ecec;
+    display: table;
+	background:#f5f5f5;
+    width: 100%;
+	
+}
+.ect-wrapper div a {
+    display: table-cell;
+    height: 3em;
+    line-height: 3em;
+}
+.ect-wrapper div a img{width:1em;padding-left:0.5em;}
+.glyphicon-arrow-up{background:url(images/icon_03.png) no-repeat;background-size:18px;width:1em;height:1em; }
+#doctor-list h4.title .zrys{background:url(images/icon_04.png) no-repeat 1%;background-size:24px;padding-left:1.5em;margin-left:0.5em;}
+#doctor-list h4.title a{padding:0em 0.5em;font-size:0.7em;}
+
+/*邀请来院*/
+.invited-hospital h1,.treat-advice h1{border-bottom:1px solid #cccccc;font-size:1.5em;font-weight:100;height:4em;line-height:4em;color:#000000;}
+.invited-hospital .invited-txt,.invited-hospital .invited-note{line-height:2em;padding:1em;}
+.color-green{color:#14a428}
+
+.btn-zlys {
+    border:2px solid #59c3ea;
+    font-size: 1em;
+    padding: 0.75em 0.3em;
+	color:#59c3ea !important;
+}
+
+/*治疗建议*/
+.input-group {
+    border: 1px solid #e3e3e3;
+    width: 6em;
+}
+.input-group-addon {
+    border: medium none;
+    border-radius: 0;
+    font-size: 1em;
+    line-height: 1.6em;
+    padding: 0;
+    width: 1.6em;
+	
+}
+.plus{border-right:1px solid #cccccc;}
+.sub{border-left:1px solid #cccccc;}
+input.form-contro {
+    border: medium none;
+    border-radius: 0;
+    box-shadow: 0 0 0 inset;
+    height: 2.1em;
+    padding: 0 0.4em;
+    text-align: center;
+    width:2em;
+}
+.treat-advice-txt{width:50%;margin:0 auto;}
+.treat-case,.treat-num{padding-top:1em;}
+.treat-advice .btn-choose{border-top:1px solid #cccccc;margin-top:1.5em;padding:1em;}
+.treat-advice .btn-choose a{margin-right:1.5em;}
+
+.zz-doctor-img{width:6em;height:5em;background:#e5e3e4;}
+.zz-doctor{padding-bottom:1.5em;border-bottom:2px solid #eff1f0;}
+.zz-doctor dl{margin-left:7em;}
+
+.tab_content{padding:2em 0em;}
+.tab_content table,.referral-list{margin:0 auto;}
+.tab_content table td{padding:0.7em 0em;}
+
+/*转诊单*/
+.nav-c span,.na-zixun span.zx-title{
+    display: block;
+    font-size: 23px;
+    height: 80px;
+    line-height: 80px;
+    overflow: hidden;
+    padding: 0 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.refer-input-txt{border:1px solid #72cdec;height:2.7em;width:94%;}
+.referral-list .zzd{
+    background: #fff url(images/zzd.png) no-repeat scroll 5px center / 12px auto;
+    padding-left:6%;
+}
+.referral-list .z-name {
+    background: #fff url(images/name.png) no-repeat scroll 5px center / 12px auto;
+   padding-left:6%;
+}
+.referral-list .z-age{
+	background: #fff url(images/age.png) no-repeat scroll 5px center / 12px auto;
+    padding-left:6%;
+}
+.referral-list .z-phone{
+	padding-left: 6%;
+	background-attachment: scroll;
+	background-color: #fff;
+	background-image: url(images/phone.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+.referral-list .z-idcard{background: #fff url(images/idcard.png) no-repeat scroll 5px center / 12px auto; padding-left:6%;}
+
+.z-doctor{background: #fff url(images/tzq.png) no-repeat scroll 5px center / 12px auto; padding-left:6%;}
+.z-yiyuan{background: #fff url(images/hospital.png) no-repeat scroll 5px center / 12px auto; padding-left:6%;}
+
+.refer-font{color:#a9a9a9;font-size:12px;}
+
+/*咨询表*/
+.na-zixun span.zx-title{background:#f3f3f3;color:#797a7a;border-bottom:1px solid #c9c9c9;}
+.zx-consignee ul li {
+    border-bottom: 1px solid #e3e3e3;
+    clear: both;
+    height: auto;
+    padding: 1em 0em;
+	width:100%;
+	float:left;
+}
+.zx-consignee .na-zixun-content{padding:0em 1.5em;}
+.zx-consignee .na-zixun-content .multiple{height:4em;}
+.zx-consignee .na-zixun-content .check-item{float:left;width:auto;margin:0em 0.4em 0.5em 0em;height:1.6em;line-height:1.6em;}
+.input-text {
+    font-size: 1.1em;
+    position: relative;
+}
+.input-text b,.input-text strong{
+    display: block;
+    float: left;
+	color:#333333;
+	
+}
+.input-text strong {width:1.5em;}
+.input-text strong img{height:1em;}
+.input-text span {
+    left: 8em;
+    position: absolute;
+    right: 0;
+	font-size:14px;
+	color:#797a7a;
+}
+.inputBg{
+	border: medium none;
+    padding: 0;
+    width: 100%;
+	height:2em;
+}
+.na-zixun ul li input[type="checkbox"] {
+    visibility: hidden;
+}
+.checkedBox i {
+    background-color: #898a8c;
+}
+.check-box i {
+    border: 1px solid #e1e2e4;
+    border-radius: 100%;
+    height: 5px;
+    left: 4px;
+    position: absolute;
+    top: 4px;
+    width: 5px;
+}
+.checkedBox {
+    -moz-box-shadow: inset 0 0 5px 1px #ccc;
+    -webkit-box-shadow: inset 0 0 5px 1px #ccc;
+    box-shadow: inset 0 0 5px 1px #ccc;
+}
+.check-box {
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%) repeat scroll 0 0;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    box-shadow: 0 0 1px #ccc;
+    cursor: pointer;
+    display: inline-block;
+    height: 15px;
+    margin: 3px 7px 0 0;
+    position: relative;
+    width:15px;
+	float:left;
+}
+
+.wrapper-dropdown{
+    /* Size & position */
+    position: relative;
+    width: 33%;
+	float:left;
+    margin: 0 auto;
+    padding:5px 25px 5px 5px;
+	font-size:12px;
+    /* Styles */
+    background:#ffffff url(images/select_down.png) no-repeat right center / 37px auto;;
+    border-radius: 2px;
+    border:1px solid #cccccc;
+    cursor: pointer;
+    outline: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+	margin:0em 0.5em 0.5em 0em;
+	color:#797a7a;
+}
+.wrapper-dropdown:after { /* Little arrow */
+    
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    margin-top: -3px;
+    border-width: 6px 6px 0 6px;
+    border-style: solid;
+   
+}
+.wrapper-dropdown .dropdown {
+    /* Size & position */
+    position: absolute;
+    top: 100%;
+    left:-1px;
+    right:-1px;
+	z-index:99;
+    /* Styles */
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-top: none;
+    border-bottom: none;
+    list-style: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+
+    /* Hiding */
+    max-height: 0;
+    overflow: hidden;
+	
+}
+
+.wrapper-dropdown .dropdown li {
+    padding: 0 10px ;
+	width:90%;
+	text-align:left;
+}
+
+.wrapper-dropdown .dropdown li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 0;
+    transition: all 0.3s ease-out;
+}
+
+.wrapper-dropdown .dropdown li:last-of-type a {
+    border: none;
+}
+
+.wrapper-dropdown .dropdown li i {
+    margin-right: 5px;
+    color: inherit;
+    vertical-align: middle;
+}
+
+/* Hover state */
+
+.wrapper-dropdown .dropdown li:hover a {
+    color: #57a9d9;
+}
+
+/* Active state */
+
+
+.wrapper-dropdown.active:after {
+    border-color: #82d1ff transparent;
+}
+
+.wrapper-dropdown.active .dropdown {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    max-height:200px;
+	overflow-y:scroll;
+}
+
+#recom_doctor,#recom_hospital{border: 1px solid #72cdec;width:95%;padding:0.7em 2em 0.8em 0em;}
+#recom_doctor .icon,#recom_hospital .icon{float:left;}
+.name-age{border:1px solid #72cdec;width:94%;height:2.3em;line-height:2.3em;}
+.name-age .name-left{float:left;width:5em;letter-spacing:1.5em;}
+.name-age .na-input{width:5em;}
+
+.calendar_doctor{color:#828282;border-bottom:2px solid #edebec;}
+.calendar_doctor h3{font-size:1.6em;font-weight:100;}
+
+/*日历*/
+#CalendarMain {
+	width: 85%;
+	height: 22em;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+#title {
+	width: 100%;
+	height: 3em;
+	background-color: #2ba892;
+	border-top:5px solid #125d50;
+	border-top-left-radius: 0.5em;
+	border-top-right-radius: 0.5em;
+}
+#title .selectBtn {
+	font-size:30px;
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+	padding:5px 10px 6px 10px;
+}
+
+.selectYear {
+	float: left;
+	margin-left:4em;
+	position: absolute;
+}
+.selectMonth {
+	float: left;
+	margin-left: 8em;
+	position: absolute;
+}
+.month {
+	float: left;
+	position: absolute;
+}
+.nextMonth {
+	float: right;
+}
+.currentDay {
+	float: right;
+}
+#context {
+	background-color: #fff;
+	width: 100%;
+}
+.week {
+	width: 100%;
+	height: 2em;
+	background:#53c3af;
+	
+}
+.week>h3 {
+	float: left;
+	color:#ffffff;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	margin-top: 5px;
+	font-size: 16px;
+}
+.dayItem {
+	float: left;
+}
+.lastItem  a{
+	color: #cccccc !important;
+}
+.item {
+	color: #333;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	margin: 0;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	border:1px solid #d9d9d9;
+	height:3em;
+	line-height:3em;
+	
+}
+.item:hover {
+	color: #b9121b;
+}
+.currentItem{background-color: #3bafda;}
+.currentItem>a {
+	width: 25px;
+	line-height: 25px;
+	float: left;
+	color: #fff;
+}
+#foots {
+	width: 100%;
+	height: 35px;
+	background-color: #fff;
+	border-top: 1px solid #ccc;
+	margin-top: -1px;
+}
+#footNow {
+	float: left;
+	margin: 6px 0 0 5px;
+	color: #009ad6;
+	font-family: "微软雅黑";
+}
+#Container {
+	overflow: hidden;
+	float: left;
+}
+#center {
+	width: 100%;
+	overflow: hidden;
+}
+#centerMain {
+	width: 300%;
+	margin-left: -100%;
+}
+#selectYearDiv {
+	float: left;
+	background-color: #fff;
+}
+#selectYearDiv>div {
+	float: left;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	border: 1px solid #ccc;
+	margin-left: -1px;
+	margin-top: -1px;
+	cursor: pointer;
+	color: #909090;
+}
+.currentYearSd, .currentMontSd {
+	color: #ff4400 !important;
+}
+#selectMonthDiv {
+	float: left;
+	background-color: #fff;
+}
+#selectMonthDiv>div {
+	color: #909090;
+	float: left;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	border: 1px solid #ccc;
+	margin-left: -1px;
+	margin-top: -1px;
+	cursor: pointer;
+}
+#selectYearDiv>div:hover, #selectMonthDiv>div:hover {
+	background-color: #efefef;
+}
+#centerCalendarMain {
+	float: left;
+}
+
+.rl-font{color:#0eb698;}
+.rl-txt{padding:0.5em 0em 0em 2.5em;}

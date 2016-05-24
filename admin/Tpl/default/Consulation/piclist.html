@@ -1,0 +1,81 @@
+<include file="Public:header"/>
+<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.role.js"></script>
+<div class="pad-lr-10">
+
+	<form id="myform" name="myform" action="{:u('Doctor/delete')}" method="post" onsubmit="return check();">
+		<div class="table-list">
+			<table width="100%" cellspacing="0">
+				<thead>
+				<tr>
+					<th width="50">ID</th>
+					<th width="120">姓名</th>
+					<th width="120">图片</th>
+					<th width="120">提交时间</th>
+					<th width="60">回复</th>
+					<th width="120">转态</th>
+					<th width="120">操作</th>
+					<!--<th width="120">操作</th>-->
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="orderList" id="val">
+					<tr>
+						<td align="center">{$val.id}</td>
+
+						<!--<td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>-->
+						<td align="center">{$val.uname}</td>
+						<td align="center"><img src="{$val.pic}" width="100" height="100"> </td>
+						<td align="center">{$val.time|date="Y-m-d H:i:s",###}</td>
+						<td align="center">{$val.comment}</td>
+
+						<td align="center">
+							<?php switch($val["status"]){
+			                    case 0:
+			                        echo("未处理");
+			                        break;
+			                    case 1:
+			                        echo("已处理");
+			                        break;
+			                    case 2:
+			                        echo("已完成");
+			                        break;
+			                }?>
+						</td>
+						<td align="center">回复</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+
+			<div class="btn">
+				<!--<label for="check_box" style="float:left;">全选/取消</label>-->
+				<!--<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定删除')"-->
+				<!--style="float:left;margin-left:10px;"/>-->
+				<div id="pages">{$page}</div>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+<script language="javascript">
+
+
+	function check() {
+		var ids = '';
+		$("input[name='id[]']:checked").each(function (i, n) {
+			ids += $(n).val() + ',';
+		});
+
+		if (ids == '') {
+			window.top.art.dialog({content: '请选择你需要操作的医生', lock: true, width: '200', height: '50', time: 1.5}, function () {
+			});
+			return false;
+		}
+		return true;
+	}
+
+
+</script>
+</body>
+</html>

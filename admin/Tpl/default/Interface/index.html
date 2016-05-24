@@ -1,0 +1,81 @@
+<include file="Public:header"/>
+<div class="pad-lr-10">
+	<form name="searchform" action="" method="post" >
+		<table width="100%" cellspacing="0" class="search-form">
+			<tbody>
+			<tr>
+				<td>
+					<div class="explain-col">
+						设备编号:
+						<input class="date input-text" type="text" name="number" id="number" size="18" value="" placeholder="请输入设备编号">
+						<input type="hidden" name="m" value="Interface" />
+						<input type="submit" name="search" class="button" value="搜索" />
+					</div>
+				</td>
+				<td>
+
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+	<form id="myform" name="myform" method="post" onsubmit="return check();">
+		<div class="table-list">
+			<table width="100%" cellspacing="0">
+				<thead>
+				<tr>
+					<th width="50">ID</th>
+					<!--<th width="20"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>-->
+					<th width="100">设备编号</th>
+					<th width="50">患者姓名</th>
+					<th width="50">性别</th>
+					<th width="120">手机</th>
+					<th width="120">出生日期</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="interface_list" id="val">
+					<tr>
+						<td align="center">{$val.id}</td>
+						<td align="center">{$val.number}</td>
+						<td align="center">{$val.name}</td>
+						<td align="center">nan</td>
+						<td align="center">{$val.phone}</td>
+						<td align="center">{$val.id_card}</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+
+			<div class="btn">
+				<!--<label for="check_box" style="float:left;">全选/取消</label>-->
+				<!--<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定删除')"-->
+				<!--style="float:left;margin-left:10px;"/>-->
+				<div id="pages">{$page}</div>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+<script language="javascript">
+
+
+	function check() {
+		var ids = '';
+		$("input[name='id[]']:checked").each(function (i, n) {
+			ids += $(n).val() + ',';
+		});
+
+		if (ids == '') {
+			window.top.art.dialog({content: '请选择你需要操作的医生', lock: true, width: '200', height: '50', time: 1.5}, function () {
+			});
+			return false;
+		}
+		return true;
+	}
+
+
+</script>
+</body>
+</html>

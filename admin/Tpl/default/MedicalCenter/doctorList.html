@@ -1,0 +1,58 @@
+<include file="Public:header"/>
+<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.role.js"></script>
+<div class="pad-lr-10">
+	<form id="myform" name="myform" action="{:u('Doctor/delete')}" method="post" onsubmit="return check();">
+		<div class="table-list">
+			<table width="100%" cellspacing="0">
+				<thead>
+				<tr>
+					<th width="50">ID</th>
+					<!--<th width="20"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>-->
+					<th width="50">姓名</th>
+					<th>性别</th>
+					<th width="60">职称</th>
+					<th width="120">手机</th>
+					<th width="120">邮箱</th>
+					<!--<th width="120">总销量</th>-->
+					<!--<th width="120">门诊</th>-->
+					<!--<th width="120">简介</th>-->
+					<!--<th width="120">操作</th>-->
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="doctorList" id="val">
+					<tr>
+						<td align="center">{$val.id}</td>
+						<!--<td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>-->
+						<td align="center">{$val.name}</td>
+						<td align="center">
+							<eq name="val['sex']" value="1">男<else/>女</eq>
+						</td>
+						<td align="center">{$val.level_name}</td>
+						<td align="center">{$val.phone}</td>
+						<td align="center">{$val.email}</td>
+						<!--<td align="center"></td>-->
+						<!--<td align="center"><a href="javascript:medicalTime({$val.id},'{$val.name}')">查看</a></td>-->
+						<!--<td align="center"><a href="javascript:detail({$val.id},'{$val.name}')">查看</a></td>-->
+
+						<!--<td align="center"><a href="javascript:edit({$val.id},'{$val.name}')">{$Think.lang.edit}</a>-->
+						<!--</td>-->
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+
+			<div class="btn">
+				<!--<label for="check_box" style="float:left;">全选/取消</label>-->
+				<!--<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定删除')"-->
+				       <!--style="float:left;margin-left:10px;"/>-->
+				<div id="pages">{$page}</div>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+
+</body>
+</html>

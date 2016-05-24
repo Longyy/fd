@@ -1,0 +1,4 @@
+[ 2015-09-25T15:24:38+08:00 ] ERR: (ThinkException) 无法加载模块:WechatMenuPublish
+[ 2015-09-25T15:24:53+08:00 ] ERR: (ThinkException) 无法加载模块:WechatMenuPublish
+[ 2015-09-25T15:25:23+08:00 ] ERR: (ThinkException) 无法加载模块:WechatMenuPublish
+[ 2015-09-25T15:31:16+08:00 ] ERR: (ThinkException) Action:http_get您所请求的方法不存在！

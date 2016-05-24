@@ -1,0 +1,16 @@
+<tagLib name="tpl"/>
+<include file="Public:header"/>
+
+<form action="{:u('Config/editService')}" method="post" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+
+
+	<tpl:editor id="info" name="info" type="KINDEDITOR" style="width:70%;height:350px;">
+		{$infoModel['info']}
+	</tpl:editor>
+
+	<div class="btn">
+		<input type="submit" value="修改" onclick="return submitFrom();" name="dosubmit" class="button" id="dosubmit">
+	</div>
+	</div>
+	</div>
+</form>

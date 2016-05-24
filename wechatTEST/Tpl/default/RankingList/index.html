@@ -1,0 +1,50 @@
+<include file="Public:header" xmlns="http://www.w3.org/1999/html"/>
+<body style=" margin: 20px;">
+<div class="" style="text-align: center;">
+	<a href="{:get_wechat_url('http://www.taoappcode.com/test/diandubi-wechat/ddb/wechat.php?m=RankingList')}">
+		<button type="button" style="width: 110px;" class="btn btn-info">昨日</button>
+	</a>
+	<a href="{:get_wechat_url('http://www.taoappcode.com/test/diandubi-wechat/ddb/wechat.php?m=RankingList&a=week')}">	<button type="button" style="width: 100px; margin-left: -15px;" class="btn btn-default">一周</button>
+	</a>
+</div>
+<br/>
+<div style="text-align: center">
+	使用时间{$user_time}分钟<br/><br/>
+	打到{$fans_perc}%
+</div>
+<table style="width: 100%">
+	<volist name="rank_list_result" id="data">
+		<php>
+			$width=round(($data['times']/$max_min)*100);
+		</php>
+		<tr>
+			<td rowspan="2" style="width:70px;">
+				{$i}
+				<img style="width: 50px;height: 50px;" src="{$data['head_img_url']}">
+			</td>
+			<td>
+				{$data['nick_name']}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="{$data['times']}" aria-valuemin="{$min_min}" aria-valuemax="{$max_min}" style="width:{$width}%;">
+						{$width}%
+					</div>
+				</div>
+			</td>
+		</tr>
+	</volist>
+
+
+
+</table>
+
+
+</body>
+
+
+<script>
+
+</script>

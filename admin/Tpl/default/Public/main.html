@@ -1,0 +1,40 @@
+<include file="Public:header"/>
+<link href="__ROOT__/statics/admin/css/main.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+	$(function () {
+		$(".main_con").hover(
+				function () {
+					$(this).css("background", "#ffffcc");
+				},
+				function () {
+					$(this).css("background", "#ffffff");
+				}
+		);
+	})
+</script>
+<div style="text-align: left;margin-top: 5px;">
+	快速查询：
+	<select id="ddlCondition" style="width: 200px;height: 35px;">
+		<option value="1">转诊单</option>
+		<option value="2">患者</option>
+		<option value="3">转诊医生</option>
+		<option value="4">治疗医生</option>
+		<option value="5">转诊医院</option>
+	</select>
+	内容：<input type="text" style="width: 300px;height: 30px;" id="txtContent" onkeydown="search()" >
+	<input type="button" onclick="search(this)" value="查询" style="width: 55px; height: 34px;cursor: pointer">
+</div>
+<div id="divContent">
+
+</div>
+</body>
+</html>
+<script>
+	function search(obj){
+		if (event.keyCode == 13||$(obj).val()=="查询"){
+			$.post('{:u('Public/search')}', {condition:$("#ddlCondition").val(),content:$("#txtContent").val()}, function(data) {
+				$("#divContent").html(data);
+			});
+		}
+	}
+</script>

@@ -1,0 +1,116 @@
+<include file="Public:header"/>
+<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.role.js"></script>
+<div class="pad-lr-10">
+	<form id="myform" name="myform" action="{:u('TransferDoctor/delete')}" method="post" onsubmit="return check();">
+		<div class="table-list">
+			<table width="100%" cellspacing="0">
+				<thead>
+				<tr>
+					<th width="50">ID</th>
+					<th width="20"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+					<th width="50">姓名</th>
+					<th>性别</th>
+					<th width="60">职称</th>
+					<th width="60">所属科室</th>
+					<th width="120">手机</th>
+					<th width="120">邮箱</th>
+					<th width="120">总销量</th>
+					<th width="120">转诊医院</th>
+					<th width="120">省份</th>
+					<th width="120">简介</th>
+					<th width="120">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="doctorList" id="val">
+					<tr>
+						<td align="center">{$val.id}</td>
+						<td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>
+						<td align="center">{$val.name}</td>
+						<td align="center">
+							<eq name="val['sex']" value="1">男<else/>女</eq>
+						</td>
+						<td align="center">{$val.titleName}</td>
+						<td align="center">{$val.deName}</td>
+						<td align="center">{$val.phone}</td>
+						<td align="center">{$val.email}</td>
+						<td align="center"><eq name="val['count_num']" value="">0<else/>{$val['count_num']}</eq></td>
+						<td align="center">{$val.hospital}</td>
+						<td align="center">{$val.province_name}</td>
+						<!--<td align="center"><a href="javascript:medicalTime({$val.id},'{$val.name}')">查看</a></td>-->
+						<td align="center"><a href="javascript:detail({$val.id},'{$val.name}')">查看</a></td>
+
+						<td align="center"><a href="javascript:edit({$val.id},'{$val.name}')">{$Think.lang.edit}</a>
+						</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+
+			<div class="btn">
+				<label for="check_box" style="float:left;">全选/取消</label>
+				<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定删除')"
+				       style="float:left;margin-left:10px;"/>
+				<div id="pages">{$page}</div>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+<script language="javascript">
+	function edit(id, name) {
+		var lang_edit = "编辑";
+		window.top.art.dialog({id: 'edit'}).close();
+		window.top.art.dialog({title: lang_edit + '--' + name, id: 'edit', iframe: '?m=TransferDoctor&a=edit&id=' + id, width: '600', height: '350'}, function () {
+			var d = window.top.art.dialog({id: 'edit'}).data.iframe;
+			d.document.getElementById('dosubmit').click();
+			return false;
+		}, function () {
+			window.top.art.dialog({id: 'edit'}).close()
+		});
+	}
+
+	function medicalTime(id, name) {
+		var lang_edit = "门诊时间查看";
+		window.top.art.dialog({id: 'edit'}).close();
+		window.top.art.dialog({title: lang_edit + '--' + name, id: 'edit', iframe: '?m=TransferDoctor&a=medicalTime&id=' + id, width: '600', height: '350'}, function () {
+			var d = window.top.art.dialog({id: 'edit'}).data.iframe;
+			d.document.getElementById('dosubmit').click();
+			return false;
+		}, function () {
+
+			window.top.art.dialog({id: 'edit'}).close()
+		});
+	}
+
+	function detail(id, name) {
+		var lang_edit = "医生简介";
+		window.top.art.dialog({id: 'edit'}).close();
+		window.top.art.dialog({title: lang_edit + '--' + name, id: 'edit', iframe: '?m=TransferDoctor&a=detail&id=' + id, width: '500', height: '250'}, function () {
+			var d = window.top.art.dialog({id: 'edit'}).data.iframe;
+			d.document.getElementById('dosubmit').click();
+			return false;
+		}, function () {
+			window.top.art.dialog({id: 'edit'}).close()
+		});
+	}
+
+	function check() {
+		var ids = '';
+		$("input[name='id[]']:checked").each(function (i, n) {
+			ids += $(n).val() + ',';
+		});
+
+		if (ids == '') {
+			window.top.art.dialog({content: '请选择你需要操作的医生', lock: true, width: '200', height: '50', time: 1.5}, function () {
+			});
+			return false;
+		}
+		return true;
+	}
+
+
+</script>
+</body>
+</html>

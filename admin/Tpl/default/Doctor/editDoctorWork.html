@@ -1,0 +1,94 @@
+
+<include file="Public:header"/>
+<tagLib name="tpl"/>
+<form action="{:u('Doctor/editDoctorWork')}" method="post" name="myform" id="myform" enctype="multipart/form-data"
+      style="margin-top:10px;">
+	<input name="id" value="{$doctor_work_time['id']}" type="hidden">
+	<div class="pad-10">
+		<div class="col-tab">
+			<ul class="tabBut cu-li">
+				<li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">{$Think.lang.general_info}
+				</li>
+			</ul>
+			<div id="div_setting_1" class="contentList pad-10">
+				<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+					<tr>
+						<th width="100">医疗中心:</th>
+						<td>
+							<select onchange="selectCenter(this)" name="medical_center_id" id="medical_center_id" style="width:200px;">
+								<option value="">--请选择--</option>
+								<volist name="medicalCenterData" id="val">
+									<option value="{$val.id}" <eq name="val['id']" value="$doctor_work_time['center_id']">selected="selected"</eq>>{$val.name}</option>
+								</volist>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th width="100">医生:</th>
+						<td>
+							<select name="doctor_id" id="ddlDoctor" style="width:200px;">
+								<volist name="doctorData" id="val">
+									<option value="{$val.doctor_id}" <eq name="val['doctor_id']" value="$doctor_work_time['doctor_id']">selected="selected"</eq>>{$val.doctor_name}</option>
+								</volist>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th width="100">上班时间:</th>
+						<td>
+							<tpl:calendar id="work_date" name="work_date" ifformat="%Y-%m-%d" style="width:200%;height:350px;" >
+								{:date('Y-m-d',$doctor_work_time['work_date'])}
+
+							</tpl:calendar>
+						</td>
+					</tr>
+					<tr>
+						<th>区间 :</th>
+						<td>
+							<input name="forenoon"  <eq name="doctor_work_time['forenoon']" value="1">checked</eq> value="1" type="checkbox">上午
+							<input style="width: 50px;" value="{$doctor_work_time['forenoon_number']}" name="forenoon_number" onkeyup="this.value=this.value.replace(/\D/g,'')"   onafterpaste="this.value=this.value.replace(/\D/g,'')" type="text" >人
+							<br/>
+							<input <eq name="doctor_work_time['afternoon']" value="1">checked</eq> name="afternoon" value="1" type="checkbox">下午
+							<input style="width: 50px;" name="afternoon_number" onkeyup="this.value=this.value.replace(/\D/g,'')"    onafterpaste="this.value=this.value.replace(/\D/g,'')" type="text" value="{$doctor_work_time['afternoon_number']}">人
+						</td>
+					</tr>
+
+
+				</table>
+			</div>
+
+			<div class="bk15"></div>
+			<div class="btn" style="display: none"><input type="submit" value="{$Think.lang.submit}" onclick="return submitFrom();"
+			                                              name="dosubmit" class="button" id="dosubmit"></div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'250',height:'50'}, function(){this.close();$(obj).focus();})}});
+//		$("#ddlDoctor").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请选择医生"});
+		$("#setup_date").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写职称"});
+	})
+
+	function selectCenter(obj){
+		debugger;
+		if($(obj).val()=="")return;
+		$("#ddlDoctor").empty();
+		$.ajax({
+			type: "POST",
+			url: '{:u("Doctor/getDoctorById")}',
+			data: { 'id': $(obj).val()},
+			success: function (data) {
+				debugger;
+				var objSelect = document.getElementById("ddlDoctor");
+				$.each(data, function (index, row) {
+					debugger;
+					var new_opt = new Option(row.doctor_name, row.doctor_id);
+					objSelect.options.add(new_opt);
+//                    $("<option></option>").text(row.name).val(row.id).appendTo("#ddlDoctor")
+				})
+			}
+		})
+	}
+</script>
+</body></html>

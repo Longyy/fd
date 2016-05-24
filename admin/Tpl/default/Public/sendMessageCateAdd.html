@@ -1,0 +1,32 @@
+<include file="Public:header" />
+
+<div class="pad_10">
+<form action="{:u('Public/sendMessageCateAdd')}" method="post" name="myform" id="myform" >
+<table width="100%" cellpadding="2" cellspacing="1" class="table_form">	
+    <tr> 
+      <th width="100">名称:</th>
+      <td><input type="text" name="name" id="name" class="input-text"></td>
+    </tr>
+	<tr>
+      <th>AppKey :</th>
+      <td><input type="text" name="AppKey" id="AppKey" class="input-text" value="{$app_cate_info.AppKey}"></td>
+    </tr>
+	<tr>
+      <th>MasterSecret :</th>
+      <td><input type="text" name="MasterSecret" id="MasterSecret" class="input-text" value="{$app_cate_info.MasterSecret}"></td>
+    </tr>
+	<tr>
+      <th width="100">{:L('sort_order')} :</th>
+      <td><input type="text" name="sort_order" id="sort_order" class="input-text" size="4" onkeyup="value=value.replace(/[^\d]/g,'')"onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></td>
+    </tr>
+	<tr>
+      <th>{:L('status')} :</th>
+      <td><input type="radio" name="status" value="1" checked>&nbsp;已审核&nbsp;&nbsp;&nbsp;
+      	  <input type="radio" name="status" value="0">&nbsp;未审核</td>
+    </tr>    
+</table>
+<input type="submit" name="dosubmit" id="dosubmit" class="dialog" value=" ">
+</form>
+</div>
+</body>
+</html>

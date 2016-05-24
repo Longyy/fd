@@ -1,0 +1,43 @@
+<tagLib name="tpl" />
+<include file="Public:header" />
+<script type="text/javascript">		
+$(function(){
+	$("#add_attatch").click(function(){
+	$("#attatch_tr").clone().prependTo($("#attatch_tr").parent());
+	});
+})
+</script>
+<form action="{:u('Public/sendMessage')}" method="post" name="myform" id="myform"  enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        <li id="tab_setting_1" class="on">{$Think.lang.general_info}</li>       
+      </ul>
+      <div id="div_setting_1" class="contentList pad-10">
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form"> 
+		  <tr>
+            <th width="100">所属分类:</th>
+            <td>			
+				<select name="cate_id" style="width:150px;">					
+					<volist name="MessageCateList" id="val">
+						<option value="{$val.id}">{$val.name}</option>
+					</volist>
+				  </select>
+			</td>
+          </tr>
+		  <tr>
+            <th width="100">标题:</th>
+            <td><input type="text" name="title" id="title" class="input-text" size="60"></td>
+          </tr>	
+          <tr>
+            <th>描述:</th>
+            <td><textarea name="content" id="content" style="width:68%;height:50px;"></textarea></td>
+          </tr>          
+        </table>
+      </div>   
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="{$Think.lang.submit}" onclick="return submitFrom();" name="dosubmit" class="button" id="dosubmit"></div>
+    </div>
+  </div>
+</form>
+</body></html>

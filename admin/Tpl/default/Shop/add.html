@@ -1,0 +1,65 @@
+
+<include file="Public:header"/>
+<tagLib name="tpl"/>
+<script type="text/javascript">
+	$(function () {
+		$("#add_attatch").click(function () {
+			$("#attatch_tr").clone().prependTo($("#attatch_tr").parent());
+		});
+	})
+</script>
+<form action="{:u('Shop/add')}" method="post" name="myform" id="myform" enctype="multipart/form-data"
+      style="margin-top:10px;">
+	<div class="pad-10">
+		<div class="col-tab">
+			<ul class="tabBut cu-li">
+				<li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">{$Think.lang.general_info}
+				</li>
+			</ul>
+			<div id="div_setting_1" class="contentList pad-10">
+				<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+					<tr>
+						<th width="100">店名:</th>
+						<td><input type="text" name="name" id="name" class="input-text" ></td>
+					</tr>
+
+					<tr>
+						<th width="100">联系人:</th>
+						<td><input type="text" name="linkman" id="linkman" class="input-text" ></td>
+					</tr>
+					<tr>
+						<th width="100">联系电话:</th>
+						<td><input type="text" name="tel" id="tel" class="input-text" ></td>
+					</tr>
+					<tr>
+						<th width="100">店址:</th>
+						<td><input type="text" name="address" id="address" class="input-text" ></td>
+					</tr>
+					<tr>
+						<th width="100">附近医院:</th>
+						<td><input type="text" name="near" id="near" class="input-text" ></td>
+					</tr>
+
+
+				</table>
+			</div>
+
+			<div class="bk15"></div>
+			<div class="btn" style="display: none">
+				<input type="submit" value="{$Think.lang.submit}" onclick="return submitFrom();"
+			                        name="dosubmit" class="button" id="dosubmit"></div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'250',height:'50'}, function(){this.close();$(obj).focus();})}});
+
+		$("#name").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写名称"});
+		$("#linkman").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写职称"});
+		$("#address").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写职称"});
+
+		$("#tel").formValidator({ empty: false, onshow: "请输入你的手机号码，可以为空哦", onfocus: "你要是输入了，必须输入正确", oncorrect: "输入正确", onempty: "你真的不想留手机号码啊？" }).inputValidator({ min: 11, max: 11, onerror: "手机号码必须是11位的,请确认" }).regexValidator({ regexp: "mobile", datatype: "enum", onerror: "你输入的手机号码格式不正确" });
+	})
+</script>
+</body></html>

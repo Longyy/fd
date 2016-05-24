@@ -1,0 +1,64 @@
+<html>
+<head>
+	<!--引用百度地图-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?type=quick&ak=fs0k1wtH2zNYqEjwKSfllKpG&v=1.0"></script>
+	<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.min.js"></script>
+	<title>
+		控件使用
+	</title>
+	<!--
+设计样式
+container容器：占50%大小
+-->
+	<style type="text/css">
+		#container {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+<input type="button" value="添加" onclick="add()">
+<input type="button" value="清除" onclick="del()">
+<div id="container"></div>
+<script type="text/javascript">
+	var map = new BMap.Map("container");//在container容器中创建一个地图,参数container为div的id属性;
+	var point = new BMap.Point({$firstPoint});//定位
+	map.centerAndZoom(point, 15);//将point移到浏览器中心，并且地图大小调整为15;
+
+	var myIcon = new BMap.Icon("../fd/statics/images/car.png", new BMap.Size(300, 157));
+	var marker = new BMap.Marker(point, {icon: myIcon});  // 创建标注
+	map.addOverlay(marker);
+//	map.panTo(point);
+	function addMark(point) {
+		debugger;
+		map.clearOverlays();
+		var point = new BMap.Point(point[0],point[1]);//定位
+		var myIcon = new BMap.Icon("../fd/statics/images/car.png", new BMap.Size(300, 157));
+		var marker2 = new BMap.Marker(point, {icon: myIcon});  // 创建标注
+		map.addOverlay(marker2);
+		map.panTo(point);
+	}
+
+	var i=0;
+	setInterval("showPoint()", 5000);
+	function showPoint()
+	{
+		$.post('{:u('Map/getPoint')}',{i:i},function(data){
+		addMark(data.split(','));
+	});
+		i++;
+	}
+
+//	function add() {
+//		addMark();
+//	}
+//	function del() {
+//
+//	}
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<include file="Public:header"/>
+<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.role.js"></script>
+<div class="pad-lr-10">
+	<form id="myform" name="myform" action="{:u('Saler/delete')}" method="post" onsubmit="return check();">
+		<div class="table-list">
+			<table width="100%" cellspacing="0">
+				<thead>
+				<tr>
+					<th width="50">ID</th>
+					<th width="20"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+					<th width="50">姓名</th>
+					<th>性别</th>
+					<th width="60">职称</th>
+					<th width="120">手机</th>
+					<th width="120">邮箱</th>
+					<th width="120">起始号码</th>
+					<th width="120">结束号码</th>
+					<th width="120">部门</th>
+					<th width="120">转诊医生名单</th>
+					<th width="120">是否在职</th>
+					<th width="120">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="salerList" id="val">
+					<tr>
+						<php>if($val['sex']==1)$sexName="男";
+							else $sexName="女"</php>
+						<td align="center">{$val.id}</td>
+						<td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>
+						<td align="center">{$val.name}</td>
+						<td align="center">
+							{$sexName}
+						</td>
+						<td align="center">{$val.level_name}</td>
+						<td align="center">{$val.phone}</td>
+						<td align="center">{$val.email}</td>
+						<td align="center">{$val.order_begin}</td>
+						<td align="center">{$val.order_end}</td>
+						<td align="center">{$val.department_name}</td>
+						<td align="center"><a style="color:blue;" href="javascript:void(0);" onclick="">查看</a></td>
+						<td align="center"><php>if($val['is_job']==1) echo('在职');
+							else echo('离职')</php></td>
+						<td align="center"><a href="javascript:edit({$val.id},'{$val.name}')">{$Think.lang.edit}</a>
+						</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+
+			<div class="btn">
+				<label for="check_box" style="float:left;">全选/取消</label>
+				<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定删除')"
+				       style="float:left;margin-left:10px;"/>
+				<div id="pages">{$page}</div>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+<script language="javascript">
+	function edit(id, name) {
+		var lang_edit = "编辑";
+		window.top.art.dialog({id: 'edit'}).close();
+		window.top.art.dialog({title: lang_edit + '--' + name, id: 'edit', iframe: '?m=Saler&a=edit&id=' + id, width: '600', height: '350'}, function () {
+			var d = window.top.art.dialog({id: 'edit'}).data.iframe;
+			d.document.getElementById('dosubmit').click();
+			return false;
+		}, function () {
+			window.top.art.dialog({id: 'edit'}).close()
+		});
+	}
+
+	function check() {
+		var ids = '';
+		$("input[name='id[]']:checked").each(function (i, n) {
+			ids += $(n).val() + ',';
+		});
+
+		if (ids == '') {
+			window.top.art.dialog({content: '请选择你需要操作的销售代表', lock: true, width: '200', height: '50', time: 1.5}, function () {
+			});
+			return false;
+		}
+		return true;
+	}
+
+
+</script>
+</body>
+</html>

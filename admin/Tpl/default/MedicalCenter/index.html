@@ -1,0 +1,141 @@
+<include file="Public:header" />
+<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery.form.3.14.js"></script>
+<!--<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.role.js"></script>-->
+<div class="pad-lr-10">
+	<form id="myform" name="myform" action="{:u('MedicalCenter/delete')}" method="post" onsubmit="return check();">
+		<div class="table-list">
+			<table width="100%" cellspacing="0">
+				<thead>
+				<tr>
+					<th width="50">ID</th>
+					<th width="20"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+					<th width="60">医疗中心名称</th>
+					<th width="200">地址</th>
+					<th width="60">经度</th>
+					<th width="120">纬度</th>
+					<th width="120">医生数量</th>
+					<th width="120">联系电话</th>
+                    <th width="120">所在省市</th>
+                    <th width="120">是否推荐</th>
+					<th width="120">添加医生姓名</th>
+					<th width="120">配置上班时间</th>
+					<th width="120">操作</th>
+
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="medicalCenterList" id="val" >
+					<tr>
+						<td align="center">{$val.id}</td>
+						<td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>
+						<td align="center"><a href="javascript:showDoctorList({$val.id},'{$val.name}')"> {$val.name}</a></td>
+						<td align="center">{$val.address}</td>
+						<!--<td align="center" onclick="status({$val.id},'status')" id="status_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.status}.gif"</td>-->
+						<td align="center">{$val.longitude}</td>
+						<td align="center">{$val.latitude}</td>
+						<td align="center">{$val.doctor_count}</td>
+						<td align="center">{$val.phone}</td>
+                        <!--<td align="center">{$val.city}{$val.is_recommend}</td>-->
+						<td align="center">{$val.province_name}</td>
+                        <td align="center"><if condition="$val.is_recommend eq 1">是<else/>否</if></td>
+						<td align="center"> <a href="javascript:addDoctor({$val.id},'{$val.name}')">添加医生</a></td>
+						<td align="center"> <a href="javascript:setTimes({$val.id},'{$val.name}')">配置时间</a></td>
+						<td align="center"> <a href="javascript:edit({$val.id},'{$val.name}')">{$Think.lang.edit}</a></td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+
+			<div class="btn">
+				<label for="check_box" style="float:left;">全选/取消</label>
+				<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定删除')" style="float:left;margin-left:10px;"/>
+				<div id="pages">{$page}</div>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+<script language="javascript">
+//	function edit(id, name) {
+//		var lang_edit = "编辑";
+//		window.top.art.dialog({id:'edit'}).close();
+//		debugger;
+//		window.top.art.dialog({title:lang_edit+'--'+name,id:'edit',iframe:'?m=MedicalCenter&a=edit&id='+id,width:'600',height:'450'}, function(){var d = window.top.art.dialog({id:'edit'}).data.iframe;d.document.getElementById('dosubmit').click();return false;}, function(){window.top.art.dialog({id:'edit'}).close()});
+//	}
+
+function edit(id, name) {
+	var lang_edit = "编辑";
+	window.top.art.dialog({id:'edit'}).close();
+	window.top.art.dialog({title:lang_edit+'--'+name,id:'edit',iframe:'?m=MedicalCenter&a=edit&id='+id,width:'800',height:'500'}, function(){
+		var d = window.top.art.dialog({id:'edit'}).data.iframe;
+		d.document.getElementById('dosubmit').click();
+        return false;
+	}, function(){window.top.art.dialog({id:'edit'}).close()});
+}
+
+	function addDoctor(id, name) {
+		var lang_edit = "添加";
+		window.top.art.dialog({id:'edit'}).close();
+		window.top.art.dialog({title:lang_edit+'--'+name,id:'edit',iframe:'?m=MedicalCenter&a=addDoctor&id='+id,width:'600',height:'200'}, function(){
+			var d = window.top.art.dialog({id:'edit'}).data.iframe;
+			$( d.document.getElementById('formAddDoctor')).ajaxSubmit({ dataType: "json",
+				success: function (data) {
+					alert("操作成功");
+				}
+			})
+
+		}, function(){window.top.art.dialog({id:'edit'}).close()});
+	}
+
+function showDoctorList(id, name) {
+	var lang_edit = "医生列表";
+	window.top.art.dialog({id:'edit'}).close();
+	window.top.art.dialog({title:lang_edit+'--'+name,id:'edit',iframe:'?m=MedicalCenter&a=doctorList&id='+id,width:'600',height:'400'}, function(){
+//		var d = window.top.art.dialog({id:'edit'}).data.iframe;
+//		$( d.document.getElementById('formAddDoctor')).ajaxSubmit({ dataType: "json",
+//			success: function (data) {
+//				alert("操作成功");
+//			}
+//		})
+
+	}, function(){window.top.art.dialog({id:'edit'}).close()});
+}
+
+
+	function setTimes(id, name) {
+		var lang_edit = "设置";
+		window.top.art.dialog({id:'edit'}).close();
+		window.top.art.dialog({title:lang_edit+'--'+name,id:'edit',iframe:'?m=MedicalCenter&a=setTimes&id='+id,width:'600',height:'200'}, function(){
+			var d = window.top.art.dialog({id:'edit'}).data.iframe;
+			$(d.document.getElementById('formAddTimes')).ajaxSubmit({ dataType: "json",
+				success: function (data) {
+					alert("操作成功");
+				}
+			})
+
+		}, function(){window.top.art.dialog({id:'edit'}).close()});
+	}
+
+	function check(){
+		var ids='';
+		$("input[name='id[]']:checked").each(function(i, n){
+			ids += $(n).val() + ',';
+		});
+
+		if(ids=='') {
+			window.top.art.dialog({content:'请选择你需要操作的医疗中心',lock:true,width:'200',height:'50',time:1.5},function(){});
+			return false;
+		}
+		return true;
+	}
+
+	function status(id,type){
+		$.get("{:u('Role/status')}", { id: id, type: type }, function(jsondata){
+			var return_data  = eval("("+jsondata+")");
+			$("#"+type+"_"+id+" img").attr('src', '__ROOT__/statics/images/status_'+return_data+'.gif');
+		});
+	}
+</script>
+</body>
+</html>

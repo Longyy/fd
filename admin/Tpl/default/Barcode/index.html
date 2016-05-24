@@ -1,0 +1,72 @@
+<include file="Public:header"/>
+<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.role.js"></script>
+<div class="pad-lr-10">
+	<form name="searchform" action="" method="get" >
+		<table width="100%" cellspacing="0" class="search-form">
+			<tbody>
+			<tr>
+				<td>
+
+						电子监管码 :
+						<input name="keyword" type="text" class="input-text" size="25" value="{$code}" />
+						状态 :
+						<select name="status_id">
+							<option value="-1" <if condition="$status_id eq -1"> selected="selected" </if>>　--请选择--</option>
+							<option value="0" <if condition="$status_id eq 0"> selected="selected" </if>>　出货</option>
+							<option value="1" <if condition="$status_id eq 1"> selected="selected" </if>>　使用</option>
+						</select>
+						<input type="hidden" name="m" value="Barcode" />
+						<input type="submit" name="search" class="button" value="搜索" />
+
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+	<form id="myform" name="myform"  method="post" onsubmit="return check();">
+		<div class="table-list">
+			<table width="100%" cellspacing="0">
+				<thead>
+				<tr>
+					<th width="50">ID</th>
+					<th width="50">电子监管码</th>
+					<th width="50">扫描医生</th>
+					<th width="50">扫码时间</th>
+					<th width="50">状态</th>
+					<th width="50">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="barcode_list" id="val">
+					<tr>
+						<td align="center">{$val.id}</td>
+						<td align="center">{$val.code}</td>
+						<td align="center">{$val.name}</td>
+						<td align="center">{$val['scan_time'] ? date('Y-m-d H:i:s',$val['scan_time']) : ''}</td>
+						<td align="center">{: $val['status_id']==0?'出货':'使用'}</td>
+						<td align="center"></td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+
+			<div class="btn">
+				<!--<label for="check_box" style="float:left;">全选/取消</label>-->
+				<!--<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定删除')"-->
+				<!--style="float:left;margin-left:10px;"/>-->
+				<div id="pages">{$page}</div>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+<script language="javascript">
+
+
+
+
+
+</script>
+</body>
+</html>

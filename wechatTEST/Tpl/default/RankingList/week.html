@@ -1,0 +1,62 @@
+<include file="Public:header" xmlns="http://www.w3.org/1999/html"/>
+<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/echarts-all.js"></script>
+
+<body style=" margin: 20px;">
+<div class="" style="text-align: center;">
+	<a href="{:get_wechat_url('http://www.taoappcode.com/test/diandubi-wechat/ddb/wechat.php?m=RankingList')}">
+		<button type="button" style="width: 110px;" class="btn btn-default">昨日</button>
+	</a>
+	<a href="{:get_wechat_url('http://www.taoappcode.com/test/diandubi-wechat/ddb/wechat.php?m=RankingList&a=week')}">	<button type="button" style="width: 100px; margin-left: -15px;" class="btn btn-info">一周</button>
+	</a>
+</div>
+<div id="main" style="height:300px;width:500px;margin-left:-50px; text-align:center">loading....</div>
+
+<table class="table">
+	<volist name="list_data" id="data">
+	<tr>
+		<td>{$data[0]}</td>
+		<td style="text-align: right">{$data[1]}</td>
+	</tr>
+	</volist>
+</table>
+</body>
+
+	<script type="text/javascript">
+
+	var myChart = echarts.init(document.getElementById('main'));
+	myChart.setOption({
+		title : {
+			text: '',
+			subtext: '             单位分钟'
+		},
+		tooltip : {
+			trigger: 'axis'
+		},
+		legend: {
+			data:['阅读时间报表展示']
+		},
+		calculable : true,
+		xAxis : [
+			{
+				type : 'category',
+				boundaryGap : false,
+				data : {$x_date}
+			}
+		],
+		yAxis : [
+			{
+				type : 'value'
+			}
+		],
+		series : [
+			{
+				name:'阅读时间报表展示',
+				type:'line',
+				stack: '总量',
+				data:{$min_data}
+			}
+		]
+	});
+
+
+</script>

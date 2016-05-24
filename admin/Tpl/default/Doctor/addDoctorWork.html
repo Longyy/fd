@@ -1,0 +1,163 @@
+
+<include file="Public:header"/>
+<tagLib name="tpl"/>
+<form action="{:u('Doctor/addDoctorWork')}" method="post" name="myform" id="myform" enctype="multipart/form-data"
+      style="margin-top:10px;">
+	<div class="pad-10">
+		<div class="col-tab">
+			<ul class="tabBut cu-li">
+				<li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">{$Think.lang.general_info}
+				</li>
+			</ul>
+			<div id="div_setting_1" class="contentList pad-10">
+				<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+					<tr>
+						<th width="100">医疗中心:</th>
+						<td>
+							<select onchange="selectCenter(this)" name="medical_center_id" id="medical_center_id" style="width:200px;">
+								<option value="">--请选择--</option>
+								<volist name="medicalCenterData" id="val">
+									<option value="{$val.id}">{$val.name}</option>
+								</volist>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th width="100">医生:</th>
+						<td>
+							<select name="doctor_id" id="ddlDoctor" style="width:200px;">
+								<!--<volist name="doctorData" id="val">-->
+									<!--<option value="{$val.id}">{$val.name}</option>-->
+								<!--</volist>-->
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th width="100">上班时间:</th>
+						<td>
+							<!--<script type="text/javascript" src="__ROOT__/statics/js/calendar/calendar.js"></script>-->
+							<!--<link rel="stylesheet" type="text/css" href="__ROOT__/statics/js/calendar/calendar-blue.css">-->
+                            <div style="border-bottom: 1px solid #eee; padding-bottom:5px;">
+                                <tpl:calendar id="work_date" name="work_date" ifformat="%Y-%m-%d"  style="width:200%;height:350px;"></tpl:calendar>
+                                上午<input type="text" size="3" id="am_0" value=""/>
+                                下午<input type="text" size="3" id="pm_0" value=""/>
+                                <a href="javascript:void(0);" onclick="add_date();" title="添加时间" style="color:blue;">添加</a>
+                            </div>
+                            <br/>
+                            <select name="dates" id="dates" style="width:325px; height:100px;" multiple>
+                            </select>
+                            &nbsp;<a href="javascript:void(0);" onclick="delete_date();" title="删除时间" style="color:blue;">删除</a>
+                            <input type="hidden" name="work_dates" id="work_dates" value=""/>
+
+							<script language="javascript" type="text/javascript">
+                                function add_date() {
+                                    var work_day = $('#work_date').val();
+                                    var work_am = $('#am_0').val();
+                                    var work_pm = $('#pm_0').val();
+                                    if(null == work_day || "" == work_day) {
+                                        alert('请选择工作时间！');
+                                        return false;
+                                    }
+                                    if(null == work_am || '' == work_am || 0 == work_am) {
+                                        work_am = '0';
+                                    }
+                                    if(null == work_pm || '' == work_pm || 0 == work_pm) {
+                                        work_pm = '0';
+                                    }
+
+
+                                    var select_text = 'date:'+ work_day + '|am:' + work_am + '|pm:' + work_pm;
+                                    var select_val = select_text;
+                                    var flag = false;
+                                    $('#dates option').each(function(){
+                                        var date = $(this).val().split('|')[0].split(':')[1];
+                                        if(date == work_day) {
+                                            flag = true;
+                                            return false;
+                                        }
+                                    });
+                                    if(true == flag) {
+                                        alert('该日期已被添加！');
+                                        return false;
+                                    }
+                                    $("<option></option>").text(select_text).val(select_val).appendTo("#dates");
+                                    change_value('add', select_val);
+                                    return true;
+                                }
+
+                                function delete_date() {
+                                    if(null == $('#dates').val()) {
+                                        return false;
+                                    }
+                                    var val = $('#dates').val();
+                                    $('#dates').find("option:selected").remove();
+                                    change_value('del', val);
+                                    return true;
+                                }
+
+                                function change_value(option, val) {
+                                    val = val.toString();
+                                    var arr = val.split(',');
+                                    if(arr.length > 0) {
+                                        $.each(arr, function(n, value){
+                                            var new_val = new Array();
+                                            if(option == 'add') {
+                                                var val_arr = $('#work_dates').val().split(',');
+                                                val_arr.push(value);
+                                                $('#work_dates').val(val_arr.join(','));
+                                                return true;
+                                            }
+
+                                            if(option == 'del') {
+                                                var val_arr = $('#work_dates').val().split(',');
+                                                val_arr.splice($.inArray(value,val_arr),1);
+                                                $('#work_dates').val(val_arr.join(','));
+                                                return true;
+                                            }
+                                        });
+                                    }
+                                }
+							</script>
+
+
+						</td>
+					</tr>
+
+				</table>
+			</div>
+
+			<div class="bk15"></div>
+			<div class="btn" style="display: none"><input type="submit" value="{$Think.lang.submit}" onclick="return submitFrom();"
+			                                              name="dosubmit" class="button" id="dosubmit"></div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'250',height:'50'}, function(){this.close();$(obj).focus();})}});
+//		$("#ddlDoctor").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请选择医生"});
+		$("#setup_date").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写职称"});
+	})
+
+	function selectCenter(obj){
+		debugger;
+		if($(obj).val()=="")return;
+		$("#ddlDoctor").empty();
+		$.ajax({
+			type: "POST",
+			url: '{:u("Doctor/getDoctorById")}',
+			data: { 'id': $(obj).val()},
+			success: function (data) {
+				debugger;
+				var objSelect = document.getElementById("ddlDoctor");
+				$.each(data, function (index, row) {
+					debugger;
+					var new_opt = new Option(row.doctor_name, row.doctor_id);
+					objSelect.options.add(new_opt);
+//                    $("<option></option>").text(row.name).val(row.id).appendTo("#ddlDoctor")
+				})
+			}
+		})
+	}
+</script>
+</body></html>

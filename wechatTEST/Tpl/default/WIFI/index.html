@@ -1,0 +1,83 @@
+<include file="Public:header" xmlns="http://www.w3.org/1999/html"/>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+<body>
+<input type="button" id="configWXDeviceWiFi" value="测试">
+</body>
+</html>
+<script type="text/javascript">
+//	alert('{$signPackage["appId"]}');
+//	alert('{$signPackage["timestamp"]}');
+//	alert('{$signPackage["nonceStr"]}');
+//	alert('{$signPackage["signature"]}');
+wx.config({
+	debug: false,
+	appId: '{$signPackage["appId"]}',
+	timestamp: '{$signPackage["timestamp"]}',
+	nonceStr: '{$signPackage["nonceStr"]}',
+	signature: '{$signPackage["signature"]}',
+	jsApiList: [
+		// 所有要调用的 API 都要加到这个列表中
+		'checkJsApi',
+		'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo',
+		'hideMenuItems',
+		'showMenuItems',
+		'hideAllNonBaseMenuItem',
+		'showAllNonBaseMenuItem',
+		'translateVoice',
+		'startRecord',
+		'stopRecord',
+		'onRecordEnd',
+		'playVoice',
+		'pauseVoice',
+		'stopVoice',
+		'uploadVoice',
+		'downloadVoice',
+		'chooseImage',
+		'previewImage',
+		'uploadImage',
+		'downloadImage',
+		'getNetworkType',
+		'openLocation',
+		'getLocation',
+		'hideOptionMenu',
+		'showOptionMenu',
+		'closeWindow',
+		'scanQRCode',
+		'chooseWXPay',
+		'openProductSpecificView',
+		'addCard',
+		'chooseCard',
+		'openCard'
+	]
+});
+
+wx.ready(function () {
+	document.querySelector('#configWXDeviceWiFi').addEventListener('touchstart', function(e){
+		WeixinJSBridge.invoke('configWXDeviceWiFi', {"key":"MTIzNDU2Nzg5MDEyAAAAzQ1Ng=="}, function(res){
+			alert('adf');
+			console.log('configWXDeviceWiFi', res);
+		});
+	});
+//	wx.getLocation({
+//		success: function (res) {
+//			alert('asdf');
+//			alert(JSON.stringify(res));
+//
+//		},
+//		cancel: function (res) {
+//			alert('用户拒绝授权获取地理位置');
+//		}
+//	});
+});
+
+
+
+
+
+
+
+
+</script>

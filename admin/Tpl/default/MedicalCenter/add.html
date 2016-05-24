@@ -1,0 +1,139 @@
+<include file="Public:header"/>
+<tagLib name="tpl"/>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=fs0k1wtH2zNYqEjwKSfllKpG"></script>
+<div class="pad_10">
+
+	<form action="{:u('MedicalCenter/add')}" method="post" name="myform" id="myform">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+			<tr>
+				<td width="60">名称 :</td>
+				<td width="300"><input type="text" name="name" id="name" class="input-text" value="" size="25"></td>
+			</tr>
+
+			<tr>
+				<td>地址:</td>
+				<td><textarea name="address" id="address" cols="40" rows="3"></textarea></td>
+				<td><input type="button" style="height: 50px;cursor:pointer; width: 100px;" onclick="search()"
+				           value="搜索地理位置"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding-left: 60px;">
+					<div id="allmap" style="height: 200px;width: 300px; border:1px solid gray"></div>
+				</td>
+
+			</tr>
+			<tr>
+				<td>
+					经纬度
+				</td>
+				<td>
+					<input readonly type="text" id="txtLongAndLati" name="LongAndLati">
+					<input type="hidden" name="longitude" id="longitude" class="input-text" value="" size="25">
+					<input type="hidden" name="latitude" id="latitude">
+				</td>
+				<td></td>
+			</tr>
+
+			<!--<tr>-->
+			<!--<th width="60">经度 :</th>-->
+			<!--<td><input onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" type="text" name="longitude" id="longitude" class="input-text" value="" size="25"></td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+			<!--<th width="60">纬度 :</th>-->
+			<!--<td><input onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" type="text" name="latitude" id="latitude" class="input-text" value="" size="25"></td>-->
+			<!--</tr>-->
+			<tr>
+				<td width="70">医生总数量 :</td>
+				<td><input type="text" name="doctor_count" id="doctor_count" class="input-text"
+				           onkeyup="value=value.replace(/[^\d]/g,'')"
+				           onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+				           value="" size="25"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>合作时间:</th>
+				<td>
+					<tpl:calendar id="setup_date" name="setup_date" style="width:200%;height:350px;"></tpl:calendar>
+				</td>
+			</tr>
+			<tr>
+				<th>联系电话:</th>
+				<td>
+					<input type="text" name="phone" id="phone" class="input-text" value="" size="25">
+				</td>
+			</tr>
+			<tr>
+				<th>省份:</th>
+				<td>
+					<select name="province_id" id="province_id" style="width:200px;">
+						<option value="">--请选择--</option>
+						<volist name="provinceData" id="val">
+							<option value="{$val.provinceID}">{$val.province}</option>
+						</volist>
+					</select>
+				</td>
+			</tr>
+
+            <tr>
+                <th>是否推荐（当GPS匹配不到时使用） :</th>
+                <td>
+                    <select id="is_recommend" name="is_recommend">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+			<tr>
+				<th>简介信息:</th>
+				<td>
+					<tpl:editor id="info" name="info" type="KINDEDITOR" style="width:200%;height:350px;"></tpl:editor>
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" id="txtCity" name="city">
+		<input type="submit" name="dosubmit" id="dosubmit" class="dialog" value=" ">
+	</form>
+
+	<script type="text/javascript">
+		$(function () {
+			$.formValidator.initConfig({formid: "myform", autotip: true, onerror: function (msg, obj) {
+				window.top.art.dialog({content: msg, lock: true, width: '250', height: '50'}, function () {
+					this.close();
+					$(obj).focus();
+				})
+			}});
+
+			$("#name").formValidator({onshow: "不能为空", onfocus: "不能为空"}).inputValidator({min: 1, onerror: "请填写名称"});
+			$("#address").formValidator({onshow: "不能为空", onfocus: "不能为空"}).inputValidator({min: 1, onerror: "请填写地址"});
+			$("#longitude").formValidator({onshow: "不能为空", onfocus: "不能为空"}).inputValidator({min: 1, onerror: "经纬度必须查询后自动获取"});
+//			$("#setup_date").focus(function () { WdatePicker({ skin: 'whyGreen', oncleared: function () { $(this).blur(); }, onpicked: function () { $(this).blur(); } }) }).formValidator({ onshow: "请输入日期", onfocus: "请输入日期，不能全部是0哦", oncorrect: "你输入的日期合法" }).inputValidator({ min: "1900-01-01 00:00:00", max: "2000-01-01 00:00:00", type: "date", onerror: "日期必须在\"1900-01-01\"和\"2000-01-01\"之间" }); //.defaultPassed();
+
+			$("#doctor_count").formValidator({onshow: "不能为空", onfocus: "不能为空"}).inputValidator({min: 1, onerror: "请填写医生总数量"});
+		})
+		// 百度地图API功能
+		var map = new BMap.Map("allmap");
+		//	var point = new BMap.Point(116.404, 39.915);
+		map.centerAndZoom("上海", 15);
+		//		$("#allmap").css("overflow","");
+
+		var localSearch = new BMap.LocalSearch(map);
+		localSearch.enableAutoViewport(); //允许自动调节窗体大小
+		function search() {
+			var map = new BMap.Map("allmap");
+　　            map.clearOverlays();//清空原来的标注
+			localSearch.setSearchCompleteCallback(function (searchResult) {
+				var poi = searchResult.getPoi(0);
+				$("#txtCity").val(poi.city);
+				$("#txtLongAndLati").val(poi.point.lng + "," + poi.point.lat);
+				$("#longitude").val(poi.point.lng);
+				$("#latitude").val(poi.point.lat);
+				map.centerAndZoom(poi.point, 13);
+				var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat));  // 创建标注，为要查询的地址对应的经纬度
+				map.addOverlay(marker);
+			});
+			localSearch.search($("#address").val());
+		}
+	</script>
+</div>
+</body>
+</html>

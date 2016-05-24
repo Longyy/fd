@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<include file="Public:header"/>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.classYes{
+			background-color: red;
+		}
+		th{width: 100px;}
+		table.imagetable {
+			font-family: verdana,arial,sans-serif;
+			font-size:11px;
+			color:#333333;
+			border-width: 1px;
+			border-color: #999999;
+			border-collapse: collapse;
+		}
+		table.imagetable th {
+			background:#b5cfd2 url('cell-blue.jpg');
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #999999;
+		}
+		.tdClass {
+			background:#dcddc0 ;
+			border-width: 1px;
+			padding: 8px;
+			height: 30px;
+			border-style: solid;
+			border-color: #999999;
+		}
+		.tdClass2{
+			background-color:green ;
+			border-width: 1px;
+			padding: 8px;
+			height: 30px;
+			border-style: solid;
+			border-color: #999999;
+		}
+	</style>
+</head>
+<body>
+<form id="formAddTimes" action="{:u('MedicalCenter/addTimes')}" method="post">
+
+	<table class="imagetable">
+		<tr>
+			<th></th><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th>
+		</tr>
+		<volist name="data" id="val">
+			<tr>
+				<td  class="tdClass" style="width: 200px;">
+					<php>
+						$dateBegin = explode(',', $val['begin_time']);
+						$dateEnd = explode(',', $val['end_time']);
+					</php>
+					{$dateBegin[0]} :
+					<php>
+						echo($dateBegin[1] == 0 ? "00" : "30")
+					</php>
+					<br/>->
+					{$dateEnd[0]} :
+					<php>
+						echo($dateEnd[1] == 0 ? "00" : "30")
+					</php>
+					<!--{$val.begin_time}点 - {$val.end_time}点-->
+					<input type="hidden" name="timesIds[]"  value="{$val['medical_time_id']}">
+				</td>
+				<td <if condition="$val['monday'] eq 1">class="tdClass2" <else/>class="tdClass"</if> >
+				<input type="hidden" name="day[][0]"  value="{$val['monday']}">
+				</td>
+				<td <if condition="$val['tuesday'] eq 1">class="tdClass2" <else/>class="tdClass"</if> class="tdClass">
+				<input type="hidden" name="day[][1]"  value="{$val['tuesday']}">
+				</td>
+				<td <if condition="$val['wednesday'] eq 1">class="tdClass2" <else/>class="tdClass"</if> class="tdClass">
+				<input type="hidden" name="day[][2]"  value="{$val['wednesday']}">
+				</td>
+				<td <if condition="$val['thursday'] eq 1">class="tdClass2" <else/>class="tdClass"</if> class="tdClass">
+				<input type="hidden" name="day[][3]"  value="{$val['thursday']}">
+				</td>
+				<td <if condition="$val['friday'] eq 1">class="tdClass2" <else/>class="tdClass"</if> class="tdClass">
+				<input type="hidden" name="day[][4]"  value="{$val['friday']}">
+				</td>
+				<td <if condition="$val['saturday'] eq 1">class="tdClass2" <else/>class="tdClass"</if> class="tdClass">
+				<input type="hidden" name="day[][5]"  value="{$val['saturday']}">
+				</td>
+				<td <if condition="$val['sunday'] eq 1">class="tdClass2" <else/>class="tdClass"</if> class="tdClass">
+				<input type="hidden" name="day[][6]"  value="{$val['sunday']}">
+				</td>
+			</tr>
+		</volist>
+	</table>
+
+	<input type="hidden" name="medical_center_id" value="{$id}">
+</form>
+</body>
+</html>
+

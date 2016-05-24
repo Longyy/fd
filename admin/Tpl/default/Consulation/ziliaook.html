@@ -1,0 +1,171 @@
+
+<tagLib name="tpl"/>
+<include file="Public:header"/>
+<div class="pad-lr-10">
+	<form name="searchform" action="" method="post" >
+		<table width="100%" cellspacing="0" class="search-form">
+			<tbody>
+			<tr>
+				<td>
+					<div class="explain-col">
+						开始时间：
+
+						<input class="date input-text" type="text" name="begin_date" id="begin_date" size="18" value="{$begin}">
+						<script language="javascript" type="text/javascript">
+							Calendar.setup({
+								inputField     :    "begin_date",
+								ifFormat       :    "%Y-%m-%d %H:%M:00",
+								showsTime      :    "true",
+								timeFormat     :    "24"
+							});
+						</script>
+
+						结束时间：
+
+						<input class="date input-text" type="text" name="end_date" id="end_date" size="18" value="{$end}">
+						<script language="javascript" type="text/javascript">
+							Calendar.setup({
+								inputField     :    "end_date",
+								ifFormat       :    "%Y-%m-%d %H:%M:00",
+								showsTime      :    "true",
+								timeFormat     :    "24"
+							});
+						</script>
+						手机号码:
+						<input type="text" name="tel" id="tel" size="18" placeholder="请输入手机号码">
+						状态：
+						<select name="status">
+							<option value="">--请选择--</option>
+							<option value="1">邀请来院</option>
+							<option value="2">治疗意见</option>
+							<option value="3">作废</option>
+							<option value="0">尚未处理请等待</option>
+						</select>
+						<input type="hidden" name="m" value="Consulation" />
+						<input type="submit" name="search" class="button" value="搜索" />
+					</div>
+				</td>
+				<td>
+
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+	<form id="myform" name="myform" action="{:u('Consulation/delete')}" method="post" onsubmit="return check();">
+		<div class="table-list">
+			<table width="100%" cellspacing="0">
+				<thead>
+				<tr>
+					<th width="50">ID</th>
+					<th width="20"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+					<th width="200">提交时间</th>
+					<th width="120">心电图</th>
+					<th width="120">肝功能</th>
+					<th width="60">患者姓名</th>
+					<!-- <th>性别</th> -->
+					<th width="120">患者手机</th>
+					<th width="120">医疗中心</th>
+					<th width="120">求诊医生</th>
+					<th width="120">提交人</th>
+					<th width="120">处理状态</th>
+					<!-- <th width="60">年龄</th> -->
+					
+					<!-- <th width="120">求诊类型</th> -->
+					<!-- <th width="120">转诊号</th> -->
+					<!-- <th width="120">临床诊断</th>
+					<th width="120">病情描述</th>
+					<th width="120">曾经过往治疗史</th> -->
+					<!-- <th width="120">治疗要求</th> -->
+					
+					
+					
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="consulationList" id="val">
+					<tr>
+						<td align="center">{$val.id}</td>
+						<td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>
+						<td align="center">{:date('Y年m月d日H点i分',$val['create_time'])}</td>
+						<td align="center">{$val.heartpic}</td>
+						<td align="center">{$val.liver}</td>
+						<td align="center">{$val.name}</td>
+						<!-- <td align="center">
+							<eq name="val['sex']" value="1">男<else/>女</eq>
+						</td> -->
+						<td align="center">{$val.tel}</td>
+						<td align="center">{$val.hospitalname}</td>
+						<td align="center">{$val.doctorname}<!-- |{$val.handle_type} --></td>
+						<td align="center">{$openid}</td>
+						<td align="center">
+							<switch name="val.handle_type" >
+								<case value="1">未处理</case>
+								<case value="2" >适合治疗</case>
+								<case value="3" >不适合治疗</case>
+								<default />尚未处理请等待
+
+							</switch>
+						</td>
+						<!-- <td align="center">{$val.age}</td> -->
+						
+					<!-- 	<td align="center">{$val.birthday}</td>
+						<td align="center">{$val.resource}</td> -->
+						<!-- <td align="center">
+							<eq name="val['order_type']" value="1">预约<else/>转诊</eq>
+						</td> -->
+						<!-- <td align="center">{$val.order_code}</td> -->
+						<!-- <td align="center">{$val.diagnose}</td>
+						<td align="center">{$val.description}</td>
+						<td align="center">{$val.before_treat}</td> -->
+						<!-- <td align="center">{$val.demand}</td> -->
+						
+						
+						
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+
+			<div class="btn">
+				<label for="check_box" style="float:left;">全选/取消</label>
+				<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定删除')"
+				       style="float:left;margin-left:10px;"/>
+				<div id="pages">{$page}</div>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+<script language="javascript">
+	function edit(id, name) {
+		var lang_edit = "编辑";
+		window.top.art.dialog({id: 'edit'}).close();
+		window.top.art.dialog({title: lang_edit + '--' + name, id: 'edit', iframe: '?m=TransferDoctor&a=edit&id=' + id, width: '600', height: '350'}, function () {
+			var d = window.top.art.dialog({id: 'edit'}).data.iframe;
+			d.document.getElementById('dosubmit').click();
+			return false;
+		}, function () {
+			window.top.art.dialog({id: 'edit'}).close()
+		});
+	}
+
+	function check() {
+		var ids = '';
+		$("input[name='id[]']:checked").each(function (i, n) {
+			ids += $(n).val() + ',';
+		});
+
+		if (ids == '') {
+			window.top.art.dialog({content: '请选择你需要操作的医生', lock: true, width: '200', height: '50', time: 1.5}, function () {
+			});
+			return false;
+		}
+		return true;
+	}
+
+
+</script>
+</body>
+</html>

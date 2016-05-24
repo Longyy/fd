@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<form action="{:u('Barcode/exportTxt')}" method="post" name="myform" id="myform" enctype="multipart/form-data"
+      style="margin-top:10px;">
+	<div class="pad-10">
+		<div class="col-tab">
+
+			<div id="div_setting_1" class="contentList pad-10">
+				<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+					<tr>
+						<th width="100">电子监管码:</th>
+						<td><input type="file" name="barcode" id="barcode"></td>
+
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div style="display: none;color: red" id="divPro" >正在导入请稍后。。。</div>
+						</td>
+
+					</tr>
+
+				</table>
+			</div>
+
+			<div class="bk15"></div>
+			<div class="btn" style="display: none">
+				<input type="submit" value="{$Think.lang.submit}" name="dosubmit" class="button" id="dosubmit">
+			</div>
+		</div>
+	</div>
+</form>
+</body>
+</html>

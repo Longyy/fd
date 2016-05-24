@@ -1,0 +1,62 @@
+<tagLib name="tpl"/>
+<include file="Public:header"/>
+
+<script type="text/javascript">
+	$(function () {
+		$("#add_attatch").click(function () {
+			$("#attatch_tr").clone().prependTo($("#attatch_tr").parent());
+		});
+	})
+</script>
+<!--<form action="{:u('MedicalCenter/updateDoctor')}" method="post" name="myform" id="formAddDoctor" enctype="multipart/form-data"-->
+<!--style="margin-top:10px;">-->
+<form id="formAddDoctor" action="{:u('MedicalCenter/updateDoctor')}" method="post">
+	<div class="pad-10">
+		<div class="col-tab">
+			<ul class="tabBut cu-li">
+				<li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">医生信息
+				</li>
+			</ul>
+			<div id="div_setting_1" class="contentList pad-10">
+				<volist name="doctorData" id="val">
+
+						<label>
+							<input type="checkbox" <eq name="val['1']" value="1">checked</eq>   name="data[]"
+							       value="{$val.doctor_id}">{$val.name}
+						</label>
+
+				</volist>
+				<!--<volist name="selectDoctors" id="val">-->
+				<!--<label> <input type="checkbox" checked name="val[{$i}][id]"-->
+				<!--value="{$val.id}">{$val.name}</label>-->
+				<!--</volist>-->
+
+				<!--<volist name="notSelectDoctors" id="val">-->
+				<!--<label> <input type="checkbox" name="val[{$i}][id]" value="{$val.id}">{$val.name}</label>-->
+				<!--</volist>-->
+				<!--<input type="checkbox" name="data[][0]" value="1">-->
+				<!--<input type="checkbox" name="data[][1]" value="2">-->
+				<!--<input type="checkbox" name="data[][2]" value="3">-->
+			</div>
+
+			<input type="hidden" id="txtId" name="medical_center_id" value="{$id}">
+
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$(function () {
+		$.formValidator.initConfig({formid: "myform", autotip: true, onerror: function (msg, obj) {
+			window.top.art.dialog({content: msg, lock: true, width: '250', height: '50'}, function () {
+				this.close();
+				$(obj).focus();
+			})
+		}});
+
+		$("#name").formValidator({onshow: "不能为空", onfocus: "不能为空"}).inputValidator({min: 1, onerror: "请填写名称"});
+		$("#level_name").formValidator({onshow: "不能为空", onfocus: "不能为空"}).inputValidator({min: 1, onerror: "请填写职称"});
+		$("#phone").formValidator({onshow: "不能为空", onfocus: "不能为空"}).inputValidator({min: 1, onerror: "手机号不能为空"});
+	})
+</script>
+
+</body></html>

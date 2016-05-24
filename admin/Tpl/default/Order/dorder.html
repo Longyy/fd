@@ -1,0 +1,140 @@
+<include file="Public:header"/>
+<script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery.role.js"></script>
+<div class="pad-lr-10">
+	<form name="searchform" action="" method="get" >
+		<table width="100%" cellspacing="0" class="search-form">
+			<tbody>
+			<tr>
+				<td>
+					<div class="explain-col">
+						订单类型：
+						<select name="cate_id">
+							<option value="0">--请选择分类--</option>
+							<volist name="cate_list['parent']" id="val">
+								<option value="{$val.id}" <if condition="$cate_id eq $val['id']"> selected="selected" </if>>{$val.name}</option>
+								<notempty name="cate_list['sub'][$val['id']]">
+									<volist name="cate_list['sub'][$val['id']]" id="sval">
+										<option value="{$sval.id}" <if condition="$cate_id eq $sval['id']"> selected="selected" </if>>&nbsp;&nbsp;&nbsp;&nbsp;{$sval.name}</option>
+										<notempty name="cate_list['sub'][$sval['id']]">
+											<volist name="cate_list['sub'][$sval['id']]" id="ssval">
+												<option value="{$ssval.id}" <if condition="$cate_id eq $ssval['id']"> selected="selected" </if>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$ssval.name}</option>
+											</volist>
+										</notempty>
+									</volist>
+								</notempty>
+							</volist>
+						</select>
+						&nbsp;关键字 :
+						<input name="keyword" type="text" class="input-text" size="25" value="{$keyword}" />
+						<input type="hidden" name="m" value="YaoPin" />
+						<input type="submit" name="search" class="button" value="搜索" />
+					</div>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+	<form id="myform" name="myform" action="{:u('Doctor/delete')}" method="post" onsubmit="return check();">
+		<div class="table-list">
+			<table width="100%" cellspacing="0">
+				<thead>
+				<tr>
+					<th width="50">ID</th>
+					<th width="120">订单类型</th>
+					<th width="120">药品</th>
+					<th width="120">规格</th>
+					<th width="60">数量</th>
+					<th width="120">配送方式</th>
+					<th width="120">药店</th>
+					<th width="120">收货地址</th>
+					<th width="120">收件人/取件人</th>
+					<th width="120">联系电话</th>
+					<th width="120">医生</th>
+					<th width="120">时间</th>
+					<th width="120">订单状态</th>
+					<!--<th width="120">操作</th>-->
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="orderList" id="val">
+					<tr>
+						<td align="center">{$val.id}</td>
+						<td align="center">
+							<?php switch($val["type"]){
+			                    case 1:
+			                        echo("代下单");
+			                        break;
+			                    case 1:
+			                        echo("直接单");
+			                        break;
+			                    case 2:
+			                        echo("取消单");
+			                        break;
+			                }?>
+						</td>
+						<!--<td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>-->
+						<td align="center">{$val.cname}</td>
+						<td align="center">{$val.ctype}</td>
+						<td align="center">{$val.count}</td>
+						<td align="center">
+							<eq name="val.devi" value="1">药店自取
+								<else/>
+								快递到付
+							</eq>
+						</td>
+						<td align="center"><neq name="val.shop" value="请选择药店">{$val.shop}</neq></td>
+						<td align="center">{$val.address}</td>
+						<td align="center">{$val.receive}</td>
+						<td align="center">{$val.phone}</td>
+						<td align="center">{$val.doct}</td>
+						<td align="center">{$val.time|date="Y-m-d H:i:s",###}</td>
+						<td align="center">
+							<?php switch($val["status"]){
+			                    case 0:
+			                        echo("未处理");
+			                        break;
+			                    case 1:
+			                        echo("已处理");
+			                        break;
+			                    case 2:
+			                        echo("已完成");
+			                        break;
+			                }?>
+						</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+
+			<div class="btn">
+				<!--<label for="check_box" style="float:left;">全选/取消</label>-->
+				<!--<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定删除')"-->
+				<!--style="float:left;margin-left:10px;"/>-->
+				<div id="pages">{$page}</div>
+			</div>
+
+
+		</div>
+	</form>
+</div>
+<script language="javascript">
+
+
+	function check() {
+		var ids = '';
+		$("input[name='id[]']:checked").each(function (i, n) {
+			ids += $(n).val() + ',';
+		});
+
+		if (ids == '') {
+			window.top.art.dialog({content: '请选择你需要操作的医生', lock: true, width: '200', height: '50', time: 1.5}, function () {
+			});
+			return false;
+		}
+		return true;
+	}
+
+
+</script>
+</body>
+</html>

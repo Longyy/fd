@@ -1,0 +1,123 @@
+<include file="Public:header"/>
+
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<form action="{:u('MedicalTime/edit')}" method="post" name="myform" id="myform">
+	<table cellpadding="2" cellspacing="1" class="table_form">
+		<tr>
+			<td>上午</td>
+			<td>
+				<select name="forenoon_begin">
+					<option value="05" <eq name="forenoon_begin" value="05">selected="selected"</eq>>05</option>
+					<option value="06" <eq name="forenoon_begin" value="06">selected="selected"</eq>>06</option>
+					<option value="07" <eq name="forenoon_begin" value="07">selected="selected"</eq>>07</option>
+					<option value="08" <eq name="forenoon_begin" value="08">selected="selected"</eq>>08</option>
+					<option value="09" <eq name="forenoon_begin" value="09">selected="selected"</eq>>09</option>
+					<option value="10" <eq name="forenoon_begin" value="10">selected="selected"</eq>>10</option>
+					<option value="11" <eq name="forenoon_begin" value="11">selected="selected"</eq>>11</option>
+					<option value="12" <eq name="forenoon_begin" value="12">selected="selected"</eq>>12</option>
+				</select>
+				:
+				<select name="forenoon_begin_min">
+					<option value="0" <eq name="forenoon_begin_min" value="0">selected="selected"</eq>>00</option>
+					<option value="1" <eq name="forenoon_begin_min" value="1">selected="selected"</eq>>30</option>
+				</select>
+				--->
+				<select name="forenoon_end">
+					<option value="05" <eq name="forenoon_end" value="05">selected="selected"</eq>>05</option>
+					<option value="06" <eq name="forenoon_end" value="06">selected="selected"</eq>>06</option>
+					<option value="07" <eq name="forenoon_end" value="07">selected="selected"</eq>>07</option>
+					<option value="08" <eq name="forenoon_end" value="08">selected="selected"</eq>>08</option>
+					<option value="09" <eq name="forenoon_end" value="09">selected="selected"</eq>>09</option>
+					<option value="10" <eq name="forenoon_end" value="10">selected="selected"</eq>>10</option>
+					<option value="11" <eq name="forenoon_end" value="11">selected="selected"</eq>>11</option>
+					<option value="12" <eq name="forenoon_end" value="12">selected="selected"</eq>>12</option>
+				</select>
+				:
+				<select name="forenoon_end_min">
+					<option value="0" <eq name="forenoon_end_min" value="0">selected="selected"</eq>>00</option>
+					<option value="1" <eq name="forenoon_end_min" value="1">selected="selected"</eq>>30</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>下午</td>
+			<td>
+				<select name="afternoon_begin">
+					<option value="13" <eq name="afternoon_begin" value="13">selected="selected"</eq>>13</option>
+					<option value="14" <eq name="afternoon_begin" value="14">selected="selected"</eq>>14</option>
+					<option value="15" <eq name="afternoon_begin" value="15">selected="selected"</eq>>15</option>
+					<option value="16" <eq name="afternoon_begin" value="16">selected="selected"</eq>>16</option>
+					<option value="17" <eq name="afternoon_begin" value="17">selected="selected"</eq>>17</option>
+					<option value="18" <eq name="afternoon_begin" value="18">selected="selected"</eq>>18</option>
+				</select>
+				:
+				<select name="afternoon_begin_min">
+					<option value="0" <eq name="afternoon_begin_min" value="0">selected="selected"</eq>>00</option>
+					<option value="1" <eq name="afternoon_begin_min" value="1">selected="selected"</eq>>30</option>
+				</select>
+				---->
+				<select name="afternoon_end">
+					<option value="13" <eq name="afternoon_end" value="13">selected="selected"</eq>>13</option>
+					<option value="14" <eq name="afternoon_end" value="14">selected="selected"</eq>>14</option>
+					<option value="15" <eq name="afternoon_end" value="15">selected="selected"</eq>>15</option>
+					<option value="16" <eq name="afternoon_end" value="16">selected="selected"</eq>>16</option>
+					<option value="17" <eq name="afternoon_end" value="17">selected="selected"</eq>>17</option>
+					<option value="18" <eq name="afternoon_end" value="18">selected="selected"</eq>>18</option>
+				</select>
+				:
+				<select name="afternoon_end_min">
+					<option value="0" <eq name="afternoon_end_min" value="0">selected="selected"</eq>>00</option>
+					<option value="1" <eq name="afternoon_end_min" value="1">selected="selected"</eq>>30</option>
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<td>晚上</td>
+			<td>
+				<select name="night_begin">
+					<option value="18" <eq name="night_begin" value="18">selected="selected"</eq>>18</option>
+					<option value="19" <eq name="night_begin" value="19">selected="selected"</eq>>19</option>
+					<option value="20" <eq name="night_begin" value="20">selected="selected"</eq>>20</option>
+					<option value="21" <eq name="night_begin" value="21">selected="selected"</eq>>21</option>
+					<option value="22" <eq name="night_begin" value="22">selected="selected"</eq>>22</option>
+					<option value="23" <eq name="night_begin" value="23">selected="selected"</eq>>23</option>
+					<option value="24" <eq name="night_begin" value="24">selected="selected"</eq>>24</option>
+				</select>
+				:
+				<select name="night_begin_min">
+					<option value="0" <eq name="night_begin_min" value="0">selected="selected"</eq>>00</option>
+					<option value="1" <eq name="night_begin_min" value="1">selected="selected"</eq>>30</option>
+				</select>
+				--->
+				<select name="night_end">
+					<option value="18" <eq name="night_end" value="18">selected="selected"</eq>>18</option>
+					<option value="19" <eq name="night_end" value="19">selected="selected"</eq>>19</option>
+					<option value="20" <eq name="night_end" value="20">selected="selected"</eq>>20</option>
+					<option value="21" <eq name="night_end" value="21">selected="selected"</eq>>21</option>
+					<option value="22" <eq name="night_end" value="22">selected="selected"</eq>>22</option>
+					<option value="23" <eq name="night_end" value="23">selected="selected"</eq>>23</option>
+					<option value="24" <eq name="night_end" value="24">selected="selected"</eq>>24</option>
+				</select>
+				:
+				<select name="night_end_min">
+					<option value="0" <eq name="night_end_min" value="0">selected="selected"</eq>>00</option>
+					<option value="1" <eq name="night_end_min" value="1">selected="selected"</eq>>30</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: right">
+				<input type="submit" value="确定">
+			</td>
+
+		</tr>
+	</table>
+
+</form>
+</body>
+</html>

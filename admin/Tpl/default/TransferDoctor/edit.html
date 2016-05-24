@@ -1,0 +1,133 @@
+<tagLib name="tpl"/>
+<include file="Public:header"/>
+<script type="text/javascript">
+	$(function () {
+		$("#add_attatch").click(function () {
+			$("#attatch_tr").clone().prependTo($("#attatch_tr").parent());
+		});
+	})
+</script>
+<form action="{:u('TransferDoctor/edit')}" method="post" name="myform" id="myform" enctype="multipart/form-data"
+      style="margin-top:10px;">
+	<div class="pad-10">
+		<div class="col-tab">
+			<ul class="tabBut cu-li">
+				<li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">{$Think.lang.general_info}
+				</li>
+			</ul>
+			<div id="div_setting_1" class="contentList pad-10">
+				<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+					<tr>
+						<th width="100">姓名:</th>
+						<td><input type="text" value="{$doctor.name}" name="name" id="name" class="input-text" ></td>
+					</tr>
+					<!--<tr>-->
+						<!--<th width="100">所属医疗中心:</th>-->
+						<!--<td>-->
+							<!--<select name="medical_center_id" id="medical_center_id" style="width:200px;">-->
+								<!--<optoin value="">--请选择--</optoin>-->
+								<!--<volist name="medicalCenterData" id="val">-->
+									<!--<option value="{$val.id}" <eq name="val['id']" value="$medicalId">selected="selected"</eq> >{$val.name}</option>-->
+								<!--</volist>-->
+							<!--</select>-->
+						<!--</td>-->
+					<!--</tr>-->
+					<tr>
+						<th>性别 :</th>
+						<td>
+							<select id="sex" name="sex">
+								<option value="1"<eq name="doctor['sex']" value="1">selected="selected"</eq>>男</option>
+								<option value="0"<eq name="doctor['sex']" value="0">selected="selected"</eq>>女</option>
+							</select>
+						</td>
+					</tr>
+
+					<tr>
+						<th>省份:</th>
+						<td>
+							<select name="province_id" id="province_id" style="width:200px;">
+								<option value="">--请选择--</option>
+								<volist name="provinceData" id="val">
+									<option value="{$val.id}" <eq name="val['id']" value="$doctor['province_id']">selected="selected"</eq>>{$val.province}</option>
+								</volist>
+							</select>
+						</td>
+					</tr>
+
+					<tr>
+						<th width="100">转诊医院:</th>
+						<td>
+							<select name="hospital_id" id="hospital_id" style="width:200px;">
+								<volist name="hospitalData" id="val">
+									<option value="{$val.id}" <eq name="val['id']" value="$doctor['hospital_id']">selected="selected"</eq>>{$val.name}</option>
+								</volist>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th width="100">医生职称:</th>
+						<td>
+							<!--<input type="text" name="hospital" id="hospital" class="input-text" >-->
+							<select name="titleName" id="titleName" style="width:200px;">
+								<option>请选择医生职称</option>
+								<volist name="titleName" id="val">
+									<option value="{$val.titleName}">{$val.titleName}</option>
+								</volist>
+							</select>
+						</td>
+					</tr>
+
+					<tr>
+						<th width="100">所属科室:</th>
+						<td>
+							<!--<input type="text" name="hospital" id="hospital" class="input-text" >-->
+							<select name="deName" id="deName" style="width:200px;">
+								<option>请选择医生所属科室</option>
+								<volist name="hospitalDepartment" id="val">
+									<option value="{$val.name}">{$val.name}</option>
+								</volist>
+							</select>
+						</td>
+					</tr>
+					
+					<tr>
+						<th>医生图片 :</th>
+						<td><input type="file"  name="img" id="img" class="input-text" style="width:200px;"/>
+							<input type="hidden" id="txtImg" name="txtImg" value="{$doctor.img}">
+						</td>
+					</tr>
+					<tr>
+						<th>职业证书 :</th>
+						<td><input type="file"  name="zyzs" id="zyzs" class="input-text" style="width:200px;"/>
+							<input type="hidden" id="zyzs" name="zyzs" value="{$doctor.zyzs}">
+						</td>
+					</tr>
+					<tr>
+						<th width="100">手机:</th>
+						<td><input type="text" value="{$doctor.phone}" name="phone" id="phone" class="input-text" ></td>
+					</tr>
+					<tr>
+						<th width="100">邮箱:</th>
+						<td><input type="text" value="{$doctor.email}" name="email" id="email" class="input-text" ></td>
+					</tr>
+
+				</table>
+			</div>
+
+			<div class="bk15"></div>
+			<input type="hidden" name="id" value="{$doctor.id}" />
+			<div class="btn" style="display: none"><input type="submit" value="{$Think.lang.submit}" onclick="return submitFrom();"
+			                                              name="dosubmit" class="button" id="dosubmit"></div>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'250',height:'50'}, function(){this.close();$(obj).focus();})}});
+
+		$("#name").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写名称"});
+		$("#titleName").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请选择医生职称"});
+		$("#phone").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"手机号不能为空"});
+	})
+</script>
+</body></html>

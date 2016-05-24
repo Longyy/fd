@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>咨询表</title>
+<link rel="stylesheet" href="css/stylea.css">
+<script src="js/prefixfree.min.js"></script>
+<script src='js/jquery.js'></script>
+</head>
+<body>
+<div class="con">
+	<div class="ect-bg">
+		<header class="ect-header ect-margin-tb ect-margin-lr text-center icon-write"> <a href="javascript:history.go(-1)" class="pull-left ect-icon ect-icon1 ect-icon-history">&nbsp;</a> <span>咨询表</span> <a href="javascript:;" class="pull-right ect-icon ect-icon1 ect-icon-mune"></a></header>
+	</div>
+	<section class="na-zixun zx-consignee">
+		<span class="zx-title text-center">欢迎使用光动力咨询</span>
+		<div class="na-zixun-content">
+		<ul>
+   		<li>
+    		<div class="input-text"><strong><img src="images/name.png"/></strong><b>姓名</b><span><input type="text" datatype="*"  class="inputBg" nullmsg="请填写信息！"></span></div>
+        </li>
+        <li>
+    		<div class="input-text"><strong><img src="images/gender.png"/></strong><b>性别</b><span><input type="radio"/>男&nbsp;<input type="radio"/>女</span></div>
+        </li>
+		<li>
+    		<div class="input-text"><strong><img src="images/map.gif"/></strong><b>所在地区</b>
+			<span>
+				<div id="province" class="wrapper-dropdown" >省
+					<ul class="dropdown">
+						<li><a href="#"><i class="icon-user"></i>测试一</a></li>
+						<li><a href="#"><i class="icon-cog"></i>测试二</a></li>
+						<li><a href="#"><i class="icon-remove"></i>测试三</a></li>
+					</ul>
+				</div>
+				<div id="city" class="wrapper-dropdown" >市
+					<ul class="dropdown">
+						<li><a href="#"><i class="icon-user"></i>测试一</a></li>
+						<li><a href="#"><i class="icon-cog"></i>测试二</a></li>
+						<li><a href="#"><i class="icon-remove"></i>测试三</a></li>
+					</ul>
+				</div>
+			</span>
+			</div>
+        </li>
+		<li>
+    		<div class="input-text"><strong><img src="images/age.png"/></strong><b>出生</b>
+            <span>
+				<div id="dd1" class="wrapper-dropdown" style="width:12%">2016年
+					<ul class="dropdown">
+						<li><a href="#"><i class="icon-user"></i>测试一</a></li>
+						<li><a href="#"><i class="icon-cog"></i>测试二</a></li>
+						<li><a href="#"><i class="icon-remove"></i>测试三</a></li>
+					</ul>
+				</div>
+				<div id="lczd" class="wrapper-dropdown" style="width:10%">1月
+					<ul class="dropdown">
+						<li><a href="#"><i class="icon-user"></i>测试一</a></li>
+						<li><a href="#"><i class="icon-cog"></i>测试二</a></li>
+						<li><a href="#"><i class="icon-remove"></i>测试三</a></li>
+					</ul>
+				</div>
+                <div id="yuyue" class="wrapper-dropdown" style="width:10%">1日
+					<ul class="dropdown">
+						<li><a href="#"><i class="icon-user"></i>测试一</a></li>
+						<li><a href="#"><i class="icon-cog"></i>测试二</a></li>
+						<li><a href="#"><i class="icon-remove"></i>测试三</a></li>
+					</ul>
+				</div>
+			</span>
+            </div>
+        </li>
+		<li>
+    		<div class="input-text"><strong><img src="images/phone.png"/></strong><b>手机号码</b><span><input type="text" datatype="*" class="inputBg" nullmsg="请填写信息！"></span></div>
+        </li>
+		<li class="multiple" style="height:5em">
+    		<div class="input-text"><strong><img src="images/message.png" width="23"/></strong><b class="text-center">信息来源<br/><font size="1">(可多选)</font></b><span>
+			<div class="check-item"><div class="check-box checkedBox"><i><input type="checkbox" /></i></div>QQ群/QQ </div>
+			<div class="check-item"><div class="check-box "><i><input type="checkbox" /></i></div>微信</div>
+			<div class="check-item"><div class="check-box "><i><input type="checkbox" /></i></div>媒体报</div>
+			<div class="check-item"><div class="check-box checkedBox"><i><input type="checkbox" /></i></div>患友介绍</div>
+			<div class="check-item"><div class="check-box "><i><input type="checkbox" /></i></div>医生推荐</div>
+			<div class="check-item"><div class="check-box "><i><input type="checkbox" /></i></div>其他</div>
+			</span></div>
+        </li>
+		
+		<li class="multiple">
+    		<div class="input-text"><strong><img src="images/name.png"/></strong><b>病情描述</b><span>
+			<div class="check-item"><div class="check-box checkedBox"><i><input type="checkbox" /></i></div>面部 </div>
+			<div class="check-item"><div class="check-box "><i><input type="checkbox" /></i></div>颈脖</div>
+			<div class="check-item"><div class="check-box "><i><input type="checkbox" /></i></div>上肢</div>
+			<div class="check-item"><div class="check-box checkedBox"><i><input type="checkbox" /></i></div>下肢</div>
+			<div class="check-item"><div class="check-box "><i><input type="checkbox" /></i></div>胸背</div>
+			<div class="check-item"><div class="check-box "><i><input type="checkbox" /></i></div>其他</div>
+			</span></div>
+        </li>
+		<li>
+    		<div class="input-text"><strong><img src="images/zls.png"/></strong>
+			<b>治疗史</b><span>
+			<div class="check-item"><div class="check-box checkedBox"><i><input type="checkbox" /></i></div>脉冲染料激光</div> 
+			<div class="check-item"><div class="check-box "><i><input type="checkbox" /></i></div>其他</div>
+			</span></div>
+        </li>
+		<li class="multiple" style="height:5em">
+    		<div class="input-text"><strong><img src="images/zlyq.png"/></strong><b>治疗要求</b>
+			<span>
+				<div id="dd2" class="wrapper-dropdown" style="width:60%">省份
+					<ul class="dropdown">
+						<li><a href="#"><i class="icon-user"></i>北京</a></li>
+						<li><a href="#"><i class="icon-cog"></i>上海</a></li>
+						<li><a href="#"><i class="icon-remove"></i>广州</a></li>
+					</ul>
+				</div>
+				<div id="dd3" class="wrapper-dropdown" style="width:60%">治疗中心名称
+					<ul class="dropdown">
+						<li><a href="#"><i class="icon-user"></i>1</a></li>
+						<li><a href="#"><i class="icon-cog"></i>2</a></li>
+						<li><a href="#"><i class="icon-remove"></i>3</a></li>
+					</ul>
+				</div>
+				<div id="dd4" class="wrapper-dropdown" style="width:60%">医生姓名
+					<ul class="dropdown">
+						<li><a href="#"><i class="icon-user"></i>1</a></li>
+						<li><a href="#"><i class="icon-cog"></i>2</a></li>
+						<li><a href="#"><i class="icon-remove"></i>3</a></li>
+					</ul>
+				</div>
+			</span>
+			</div>
+        </li>
+        </ul>
+		<p class="ect-padding-lr ect-padding-tb refer-font"><input checked="checked" type="radio">同意光动力咨询服务条款内容</p>
+		<p class="ect-padding text-center">
+		<input type="button" class="btn_blue treat-btn ect-margin-lr" value="提交">
+		<input type="button" class="btn_grey treat-btn ect-margin-lr" value="取消">
+		</p>
+		</div>
+		<br/>
+		<br/>
+		
+	</section>
+	
+</div>
+
+</body>
+</html>
+<script>
+$.fn.toggleCheckbox = function () {
+    this.attr('checked', !this.attr('checked'));
+}
+$('.check-box').on('click', function () {
+    $(this).find(':checkbox').toggleCheckbox();
+    $(this).toggleClass('checkedBox');
+});
+
+		
+		function DropDown(el) {
+				this.dd = el;
+				this.initEvents();
+		}
+		DropDown.prototype = {
+			initEvents : function() {
+					var obj = this;
+
+					obj.dd.on('click', function(event){
+						$(this).toggleClass('active');
+						event.stopPropagation();
+					});	
+			}
+		}
+
+			$(function() {
+
+				var dd1 = new DropDown( $('#dd1') );
+				var dd2 = new DropDown( $('#dd2') );
+				var dd3 = new DropDown( $('#dd3') );
+				var dd4 = new DropDown( $('#dd4') );
+				var province = new DropDown( $('#province') );
+				var city = new DropDown( $('#city') );
+				var yuyue = new DropDown( $('#yuyue') );
+				var lczd = new DropDown( $('#lczd') );
+				
+				$(document).click(function() {
+					// all dropdowns
+					$('#dd1').removeClass('active');
+					$('#dd2').removeClass('active');
+					$('#dd3').removeClass('active');
+					$('#dd4').removeClass('active');
+					$('#province').removeClass('active');
+					$('#city').removeClass('active');
+					$('#yuyue').removeClass('yuyue');
+					$('#lczd').removeClass('lczd');
+				});
+
+			});
+</script>
